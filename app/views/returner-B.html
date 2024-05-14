@@ -1,0 +1,97 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      PROTOTYPE
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is not a real service
+    </span>
+  </p>
+</div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+
+
+{% endblock %}
+
+{% block content %}
+<form class="form" action="/consent" method="post">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-label-wrapper">
+      <label class="govuk-label govuk-label--l" for="returner-A">
+        Did {{ data['firstName'] }} work in any early years roles between <span id="twentyFourWeeksBeforeDate"></span> and <span id="startDate"></span>?
+      </label>
+    </h1>
+    <div id="returner-A-hint" class="govuk-hint">
+      To be eligible, {{ data['firstName'] }} must not have worked in any childcare role in the 6 months before starting their current role.
+    </div>
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="yes" name="yes" type="radio" value="yes">
+            <label class="govuk-label govuk-radios__label" for="yes">
+              Yes
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="no name="no" type="radio" value="no">
+            <label class="govuk-label govuk-radios__label" for="no">
+              No
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          How do I collect this information?
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        We need you to be confident providing this information to continue making a claim.
+      </div>
+    </details>
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+  </form>
+  </div>
+</div>
+
+<script>
+  // Assuming you have the start date stored in your data object
+  const startDay = {{ data['startDay'] }};
+  const startMonth = {{ data['startMonth'] }};
+  const startYear = {{ data['startYear'] }};
+
+  // Calculate 24 weeks before start date
+  const startDate = new Date(startYear, startMonth - 1, startDay);
+  const twentyFourWeeksBeforeDate = new Date(startDate.getTime() - (24 * 7 * 24 * 60 * 60 * 1000));
+
+  // Format the dates
+  const options = { day: 'numeric', month: 'long', year: 'numeric' };
+  const formattedStartDate = startDate.toLocaleDateString('en-GB', options);
+  const formattedTwentyFourWeeksBeforeDate = twentyFourWeeksBeforeDate.toLocaleDateString('en-GB', options);
+
+  // Update the HTML with formatted dates
+  document.getElementById('startDate').innerText = formattedStartDate;
+  document.getElementById('twentyFourWeeksBeforeDate').innerText = formattedTwentyFourWeeksBeforeDate;
+</script>
+{% endblock %}

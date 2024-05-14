@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      PROTOTYPE
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is not a real service
+  </p>
+</div>
+
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<form class="form" action="/returner-A" method="post">
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+<div class="govuk-form-group">
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--l" for="declaration-B">
+      I confirm that {{ data['firstName'] }}’s role is at least 70% child-facing
+    </label>
+  </h1>
+  <div id="child-facing-B-hint" class="govuk-hint">
+    This role must be at least 70% child-facing to be eligible for an incentive payment.
+  </div>
+  <div class="govuk-checkboxes__item">
+    <input class="govuk-checkboxes__input" id="declaration-B" name="declarationB" type="checkbox" value="confirmed">
+    <label class="govuk-label govuk-checkboxes__label" for="declaration-B">
+      I confirm
+    </label>
+  </div>
+</div>
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      I cannot confirm this information
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    We need you to be confident providing this information to continue making a claim.
+  </div>
+</details>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
