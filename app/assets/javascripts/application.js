@@ -18,6 +18,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
 
     // Calculate the date 24 weeks later
     const twentyFourWeeksEarlier = new Date(startDate);
+    twentyFourWeeksEarlier.setDate(twentyFourWeeksEarlier.getDate() + (24 * 7)); // Adding 24 weeks (24 * 7 days)
 
     // Format the calculated date as desired
     const formattedDate = twentyFourWeeksEarlier.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
