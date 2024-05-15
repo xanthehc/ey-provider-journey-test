@@ -53,4 +53,21 @@ router.get('/returner-A', function(req, res) {
     }
 });
 
+// Define a route to handle the start date submission
+router.post('/start-date', (req, res) => {
+    const { startDay, startMonth, startYear } = req.body;
+
+    const startDate = new Date(`${startYear}-${startMonth}-${startDay}`);
+    const comparisonDate = new Date('2024-05-15');
+
+    if (startDate < comparisonDate) {
+        res.redirect('/ineligible-start-date');
+    } else {
+        res.redirect('/child-facing-A');
+    }
+});
+
+module.exports = router;
+
+
 module.exports = router;  // Export the router at the end of the file
