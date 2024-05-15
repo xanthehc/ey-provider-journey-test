@@ -53,21 +53,60 @@ router.get('/returner-A', function(req, res) {
     }
 });
 
-// Define a route to handle the start date submission
+
+
+// Define route for handling the form submission
 router.post('/start-date', (req, res) => {
+    // Extract the start date from the form submission
     const { startDay, startMonth, startYear } = req.body;
 
+    // Create a Date object from the extracted start date
     const startDate = new Date(`${startYear}-${startMonth}-${startDay}`);
-    const comparisonDate = new Date('2024-05-15');
 
-    if (startDate < comparisonDate) {
-        res.redirect('/ineligible-start-date');
+    // Check if the start date is after 15 May 2024
+    const eligibilityDate = new Date('2024-05-15');
+    if (startDate > eligibilityDate) {
+        // Redirect to the child-facing route
+        return res.redirect('/child-facing');
     } else {
-        res.redirect('/child-facing-A');
+        // Redirect to '/ineligible-start-date'
+        return res.redirect('/ineligible-start-date');
     }
 });
 
-module.exports = router;
+// Define route for randomly redirecting to child-facing-A or child-facing-B
+router.post('/child-facing', (req, res) => {
+    // Randomly choose between /child-facing-A and /child-facing-B
+    const nextPage = Math.random() < 0.5 ? '/child-facing-A' : '/child-facing-B';
+    // Redirect to the randomly chosen page
+    return res.redirect(nextPage);
+});
+
+// Define route for child-facing-A
+router.get('/child-facing-A', (req, res) => {
+    // Render the child-facing-A page
+    res.render('child-facing-A');
+});
+
+// Define route for child-facing-B
+router.get('/child-facing-B', (req, res) => {
+    // Render the child-facing-B page
+    res.render('child-facing-B');
+});
+
+// Define route for /returner-A
+router.get('/returner-A', (req, res) => {
+    // Render the returner-A page
+    res.render('returner-A');
+});
+
+// Define route for /returner-B
+router.get('/returner-B', (req, res) => {
+    // Render the returner-B page
+    res.render('returner-B');
+});
+
+
 
 
 module.exports = router;  // Export the router at the end of the file

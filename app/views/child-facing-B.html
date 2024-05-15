@@ -74,4 +74,17 @@ contact ops team...?
     </div>
   </div>
 
+  <script>
+    document.querySelector('form.form').addEventListener('submit', function(event) {
+        // Prevent default form submission behavior
+        event.preventDefault();
+
+        // Randomly choose between /returner-A and /returner-B
+        const nextPage = Math.random() < 0.5 ? '/returner-A' : '/returner-B';
+        // Redirect to the randomly chosen page
+        window.location.href = nextPage;
+    });
+</script>
+
+
 {% endblock %}

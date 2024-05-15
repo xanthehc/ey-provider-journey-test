@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block content %}
-<form class="form" action="/child-facing-A" method="post">
+<form class="form" method="post">
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
@@ -75,6 +75,34 @@
 
   </div>
 </div>
+
+<script>
+  document.querySelector('form.form').addEventListener('submit', function(event) {
+      // Prevent default form submission behavior
+      event.preventDefault();
+
+      // Extract start date values from form inputs
+      const startDay = document.getElementById('start-day').value;
+      const startMonth = document.getElementById('start-month').value;
+      const startYear = document.getElementById('start-year').value;
+
+      // Create a Date object from the extracted start date
+      const startDate = new Date(`${startYear}-${startMonth}-${startDay}`);
+
+      // Check if the start date is after 15 May 2024
+      const eligibilityDate = new Date('2024-05-15');
+      if (startDate > eligibilityDate) {
+          // Randomly choose between /child-facing-A and /child-facing-B
+          const nextPage = Math.random() < 0.5 ? '/child-facing-A' : '/child-facing-B';
+          // Redirect to the randomly chosen page
+          window.location.href = nextPage;
+      } else {
+          // Redirect to '/ineligible-start-date'
+          window.location.href = '/ineligible-start-date';
+      }
+  });
+</script>
+
 
 
 {% endblock %}

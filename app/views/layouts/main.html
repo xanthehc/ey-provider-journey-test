@@ -34,3 +34,37 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
   href: "javascript:window.history.back()"
 }) }}
 {% endblock %}
+
+{% block footer %}
+ {{ govukFooter({
+   meta: {
+     items: [
+       {
+         href: "/child-facing-A",
+         text: "Child Facing A"
+       },
+       {
+        href: "/child-facing-B",
+        text: "Child Facing B"
+      },
+      {
+        href: "/returner-A",
+        text: "Returner A"
+      },
+      {
+       href: "/returner-B",
+       text: "Returner B"
+     },
+       {
+         href: "/manage-prototype",
+         text: "Manage your prototype"
+       },
+       {
+         href: "/manage-prototype/clear-data",
+         text: "Clear data"
+       }
+     ],
+     visuallyHiddenTitle: "Footer links"
+   }
+ }) }}
+{% endblock %}
