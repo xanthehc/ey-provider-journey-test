@@ -25,27 +25,35 @@
 
 {% block content %}
 
-<form class="form" action="/returner-A" method="post">
+<form class="form" action="/returner-A" method="post" onsubmit="return validateForm()">
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-<div class="govuk-form-group">
-  <h1 class="govuk-label-wrapper">
-    <label class="govuk-label govuk-label--l" for="declaration-A">
-      I confirm that at least 70% of {{ data['firstName'] }}’s time is spent working directly with children
-    </label>
-  </h1>
-  <div id="child-facing-A-hint" class="govuk-hint">
-    To be eligible this role must involve working directly with children at least 70% of the time.
-  </div>
-  <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="declaration-A" name="declarationA" type="checkbox" value="confirmed">
-    <label class="govuk-label govuk-checkboxes__label" for="declaration-A">
-      I confirm
-    </label>
-  </div>
-</div>
+      <div class="govuk-form-group" id="checkbox-group">
+        <fieldset class="govuk-fieldset" aria-describedby="declaration-A-error">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              I confirm that at least 70% of {{ data['firstName'] }}’s time is spent working directly with children
+            </h1>
+          </legend>
+          <div id="declaration-A-hint" class="govuk-hint">
+            This role must involve working directly with children at least 70% of the time to be eligible for an incentive payment.
+          </div>
+          <p id="declaration-A-error" class="govuk-error-message" style="display: none;">
+            <span class="govuk-visually-hidden">Error:</span> Please confirm that at least 70% of the time is spent working directly with children.
+          </p>
+          <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="declaration-A" name="declarationA" type="checkbox" value="confirmed">
+              <label class="govuk-label govuk-checkboxes__label" for="declaration-A">
+                I confirm
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
 <details class="govuk-details">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">
@@ -75,16 +83,38 @@ contact ops team...?
   </div>
 
   <script>
-    document.querySelector('form.form').addEventListener('submit', function(event) {
-        // Prevent default form submission behavior
-        event.preventDefault();
+    function validateForm() {
+      var checkBox = document.getElementById("declaration-A");
+      var errorParagraph = document.getElementById("declaration-A-error");
+      if (!checkBox.checked) {
+        errorParagraph.style.display = "block";
+        document.getElementById("checkbox-group").classList.add("govuk-form-group--error");
+        return false;
+      }
+      return true;
+    }
+  </script>
+  
 
-        // Randomly choose between /returner-A and /returner-B
-        const nextPage = Math.random() < 0.5 ? '/returner-A' : '/returner-B';
-        // Redirect to the randomly chosen page
-        window.location.href = nextPage;
+  <script>
+    document.querySelector('form.form').addEventListener('submit', function(event) {
+      // Prevent default form submission behavior
+      event.preventDefault();
+  
+      // Check if the checkbox is checked
+      var checkBox = document.getElementById("declaration-A");
+      if (!checkBox.checked) {
+
+        return false; // Prevent redirection
+      }
+  
+      // Randomly choose between /returner-A and /returner-B
+      const nextPage = Math.random() < 0.5 ? '/returner-A' : '/returner-B';
+      // Redirect to the randomly chosen page
+      window.location.href = nextPage;
     });
-</script>
+  </script>
+  
 
 
 {% endblock %}

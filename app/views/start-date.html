@@ -38,7 +38,7 @@
           For example, 27 3 2007
         </div>
         <p id="start-date-error" class="govuk-error-message" style="display: none;">
-          <span class="govuk-visually-hidden">Error:</span> Provide a date in the format 27 3 200
+          <span class="govuk-visually-hidden">Error:</span> Provide a date in the format 27 3 2002
         </p>
           <div class="govuk-date-input__item">
             <div class="govuk-form-group">
@@ -108,23 +108,30 @@
 </script>
 
 <script>
-  document.querySelector('form.form').addEventListener('submit', function(event) {
-      event.preventDefault();
+function validateForm() {
+  var startDay = document.getElementById("start-day").value.trim();
+  var startMonth = document.getElementById("start-month").value.trim();
+  var startYear = document.getElementById("start-year").value.trim();
 
-      const startDay = document.getElementById('start-day').value;
-      const startMonth = document.getElementById('start-month').value;
-      const startYear = document.getElementById('start-year').value;
+  var startDayError = startDay === "";
+  var startMonthError = startMonth === "";
+  var startYearError = startYear === "";
 
-      // Create a Date object from the extracted start date
-      const startDate = new Date(`${startYear}-${startMonth}-${startDay}`);
+  if (startDayError || startMonthError || startYearError) {
+    // Show error states
+    document.getElementById("start-date-error").style.display = "block";
 
-      // Store start date in session or local storage if needed
-      // For simplicity, let's assume we're storing it in session storage
-      sessionStorage.setItem('startDate', startDate.toISOString());
+    // Optionally, you can add error classes to input fields if needed
+    document.getElementById("start-day").classList.toggle("govuk-input--error", startDayError);
+    document.getElementById("start-month").classList.toggle("govuk-input--error", startMonthError);
+    document.getElementById("start-year").classList.toggle("govuk-input--error", startYearError);
 
-      // Redirect to the next page
-      window.location.href = '/returner-B';
-  });
+    return false;
+  }
+
+  // If all fields are filled, allow form submission
+  return true;
+}
 </script>
 
  <script>
