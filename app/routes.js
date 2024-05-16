@@ -106,19 +106,15 @@ router.get('/returner-B', (req, res) => {
     res.render('returner-B');
 });
 
-router.post('/submit-returner-B', (req, res) => {
-    const workedInEarlyYears = req.body.worked_in_early_years;
-    
-    // Redirect based on user selection
-    if (workedInEarlyYears === 'yes') {
-      res.redirect('/consent');
-    } else if (workedInEarlyYears === 'no') {
-      res.redirect('/ineligible-returner-B');
-    } else {
-      // Handle the case where no radio button is selected
-      res.send('Please select an option');
-    }
+// Define routes
+router.post('/ineligible-returner-B', function(req, res) {
+    res.redirect('/ineligible-returner-B');
   });
+  
+  router.post('/employee-email', function(req, res) {
+    res.redirect('/employee-email');
+  });
+  
 
  // POST route for handling form submission in start-date page
 router.post('/start-date', (req, res) => {
