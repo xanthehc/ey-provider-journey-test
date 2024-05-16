@@ -4,8 +4,6 @@
   Question page template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
-
-
 {% block beforeContent %}
 <div class="govuk-phase-banner">
   <p class="govuk-phase-banner__content">
@@ -14,41 +12,52 @@
     </strong>
     <span class="govuk-phase-banner__text">
       This is not a real service
+    </span>
   </p>
 </div>
 
-  {{ govukBackLink({
+{{ govukBackLink({
   text: "Back",
   href: "javascript:window.history.back()"
 }) }}
 {% endblock %}
 
 {% block content %}
+<form class="form" action="/claimant-name" method="post" onsubmit="return validateForm()">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div id="nursery-name-group" class="govuk-form-group">
+        <h1 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--l" for="nursery-name">
+            Where do you work?
+          </label>
+        </h1>
+        <div id="nursery-name-hint" class="govuk-hint">
+          Enter the name of the nursery you work at.
+        </div>
+        <p id="nursery-name-error" class="govuk-error-message" style="display: none;">
+          <span class="govuk-visually-hidden">Error:</span> Please enter your current school.
+        </p>
+        <input class="govuk-input" id="nursery-name" name="nurseryName" type="text" aria-describedby="nursery-name-hint nursery-name-error">
+      </div>
 
-<form class="form" action="/claimant-name" method="post">
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
-<div class="govuk-form-group">
-  <h1 class="govuk-label-wrapper">
-    <label class="govuk-label govuk-label--l" for="nursery-name">
-      Where do you work?
-    </label>
-  </h1>
-  <div id="nursery-name-hint" class="govuk-hint">
-    Enter the name of the nursery you work at.
-  </div>
-  <input class="govuk-input" id="nursery-name" name="nurseryName" type="text" aria-describedby="event-name-hint">
-</div>
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-      </form>
-
-      </form>
-
+      {{ govukButton({
+        text: "Continue"
+      }) }}
     </div>
   </div>
+</form>
 
+<script>
+  function validateForm() {
+    var nurseryName = document.getElementById("nursery-name").value;
+    if (nurseryName.trim() === "") {
+      document.getElementById("nursery-name-group").classList.add("govuk-form-group--error");
+      document.getElementById("nursery-name-error").style.display = "block";
+      return false;
+    }
+    return true;
+  }
+</script>
 {% endblock %}
+

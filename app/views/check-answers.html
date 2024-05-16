@@ -54,17 +54,19 @@
               <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of birth</span></a>
             </dd>
           </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              What was your employee's start date?
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['startDay'] }} {{ data['startMonth'] }} {{ data['startYear'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> customer reference</span></a>
-            </dd>
-          </div>
+
+          
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                What was your employee's start date?
+              </dt>
+              <dd class="govuk-summary-list__value" id="startDate"></dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> customer reference</span></a>
+              </dd>
+            </div>
+        
+        
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Confirmation that at least 70% of your employee's time is spent working directly with children 
@@ -135,4 +137,16 @@
 
     </div>
   </div>
+
+  <script>
+    // Retrieve start date from session storage
+    const startDateString = sessionStorage.getItem('startDate');
+    if (startDateString) {
+      const startDate = new Date(startDateString);
+      const options = { day: 'numeric', month: 'long', year: 'numeric' };
+      const formattedStartDate = startDate.toLocaleDateString('en-GB', options);
+      document.getElementById('startDate').textContent = formattedStartDate;
+    }
+  </script>
+
 {% endblock %}

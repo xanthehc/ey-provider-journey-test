@@ -25,30 +25,30 @@
 {% endblock %}
 
 {% block content %}
-<form class="form" action="/consent" method="post">
+<form class="form" id="returnerForm" method="post">
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
     <h1 class="govuk-label-wrapper">
-      <label class="govuk-label govuk-label--l" for="returner-A">
-        Did {{ data['firstName'] }} work in any early years roles between <span id="twentyFourWeeksBeforeDate"></span> and <span id="startDate"></span>?
+      <label class="govuk-label govuk-label--l" for="returner-B">
+        Did {{ data['firstName'] }} work in any early years roles between <span id="sixMonthsBeforeDate"></span> and <span id="oneDayBeforeStartDate"></span>?
       </label>
     </h1>
-    <div id="returner-A-hint" class="govuk-hint">
+    <div id="returner-B-hint" class="govuk-hint">
       To be eligible, {{ data['firstName'] }} must not have worked in any childcare role in the 6 months before starting their current role.
     </div>
     <div class="govuk-form-group">
       <fieldset class="govuk-fieldset">
         <div class="govuk-radios" data-module="govuk-radios">
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="yes" name="yes" type="radio" value="yes">
+            <input class="govuk-radios__input" id="yes" name="worked_in_early_years" type="radio" value="yes">
             <label class="govuk-label govuk-radios__label" for="yes">
               Yes
             </label>
           </div>
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="no name="no" type="radio" value="no">
+            <input class="govuk-radios__input" id="no" name="worked_in_early_years" type="radio" value="no">
             <label class="govuk-label govuk-radios__label" for="no">
               No
             </label>
@@ -76,22 +76,71 @@
 </div>
 
 <script>
-  // Assuming you have the start date stored in your data object
-  const startDay = {{ data['startDay'] }};
-  const startMonth = {{ data['startMonth'] }};
-  const startYear = {{ data['startYear'] }};
+  function validateForm() {
+    // Check if either radio button is selected
+    const yesChecked = document.getElementById('yes').checked;
+    const noChecked = document.getElementById('no').checked;
 
-  // Calculate 24 weeks before start date
-  const startDate = new Date(startYear, startMonth - 1, startDay);
-  const twentyFourWeeksBeforeDate = new Date(startDate.getTime() - (24 * 7 * 24 * 60 * 60 * 1000));
+    // Show error message if neither radio button is selected
+    if (!yesChecked && !noChecked) {
+      document.getElementById('worked_in_early_years-error-group').classList.add('govuk-form-group--error');
+      document.getElementById('worked_in_early_years-error').style.display = 'block';
+      return false; // Prevent form submission
+    }
 
-  // Format the dates
-  const options = { day: 'numeric', month: 'long', year: 'numeric' };
-  const formattedStartDate = startDate.toLocaleDateString('en-GB', options);
-  const formattedTwentyFourWeeksBeforeDate = twentyFourWeeksBeforeDate.toLocaleDateString('en-GB', options);
-
-  // Update the HTML with formatted dates
-  document.getElementById('startDate').innerText = formattedStartDate;
-  document.getElementById('twentyFourWeeksBeforeDate').innerText = formattedTwentyFourWeeksBeforeDate;
+    // If at least one radio button is selected, proceed with form submission
+    return true;
+  }
 </script>
+
+<script>
+  // Retrieve start date and 6 months before date from session storage
+  const startDateString = sessionStorage.getItem('startDate');
+  if (startDateString) {
+      const startDate = new Date(startDateString);
+
+      // Calculate 6 months before start date
+      const sixMonthsBeforeDate = new Date(startDate);
+      sixMonthsBeforeDate.setMonth(sixMonthsBeforeDate.getMonth() - 6);
+
+      // Calculate one day before start date
+      const oneDayBeforeStartDate = new Date(startDate.getTime() - (1 * 24 * 60 * 60 * 1000));
+
+      // Format the dates
+      const options = { day: 'numeric', month: 'long', year: 'numeric' };
+      const formattedSixMonthsBeforeDate = sixMonthsBeforeDate.toLocaleDateString('en-GB', options);
+      const formattedOneDayBeforeStartDate = oneDayBeforeStartDate.toLocaleDateString('en-GB', options);
+
+      // Update the HTML with formatted dates
+      document.getElementById('sixMonthsBeforeDate').innerText = formattedSixMonthsBeforeDate;
+      document.getElementById('oneDayBeforeStartDate').innerText = formattedOneDayBeforeStartDate;
+  } else {
+      // Handle case where dates are not available
+      console.error('Dates are not available');
+  }
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('returnerForm');
+  
+    form.addEventListener('submit', function (event) {
+      var selectedOption = document.querySelector('input[name="worked_in_early_years"]:checked');
+      if (!selectedOption) {
+        // No option selected, do not redirect
+        return;
+      }
+  
+      var selectedValue = selectedOption.value;
+      if (selectedValue === 'yes') {
+        window.location.href = '/consent'; // Redirect to consent page
+      } else if (selectedValue === 'no') {
+        window.location.href = '/ineligible-returner-B'; // Redirect to ineligible-returner-B page
+      }
+  
+      event.preventDefault(); // Prevent default form submission
+    });
+  });
+  </script>
+
 {% endblock %}

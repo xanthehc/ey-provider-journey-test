@@ -23,10 +23,10 @@
 {% endblock %}
 
 {% block content %}
-<form class="form" method="post">
+<form class="form" method="post" onsubmit="return validateForm()">
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
+    <div class="govuk-form-group">
     <div class="govuk-form-group">
       <fieldset class="govuk-fieldset">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -37,12 +37,15 @@
         <div id="start-date-hint" class="govuk-hint">
           For example, 27 3 2007
         </div>
+        <p id="start-date-error" class="govuk-error-message" style="display: none;">
+          <span class="govuk-visually-hidden">Error:</span> Provide a date in the format 27 3 200
+        </p>
           <div class="govuk-date-input__item">
             <div class="govuk-form-group">
               <label class="govuk-label govuk-date-input__label" for="start-day">
                 Day
               </label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-day" name="startDay" type="text" inputmode="numeric" value="{{ data['startDay'] }}">
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-day" name="startDay" type="text" inputmode="numeric">
             </div>
           </div>
           <div class="govuk-date-input__item">
@@ -50,7 +53,7 @@
               <label class="govuk-label govuk-date-input__label" for="start-month">
                 Month
               </label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-month" name="startMonth" type="text" inputmode="numeric" value="{{ data['startMonth'] }}">
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-month" name="startMonth" type="text" inputmode="numeric">
             </div>
           </div>
           <div class="govuk-date-input__item">
@@ -58,12 +61,13 @@
               <label class="govuk-label govuk-date-input__label" for="start-year">
                 Year
               </label>
-              <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="start-year" name="startYear" type="text" inputmode="numeric" value="{{ data['startYear'] }}">
+              <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="start-year" name="startYear" type="text" inputmode="numeric">
             </div>
           </div>
         </form>
       </fieldset>
     </div>
+  </div>
 
     {{ govukButton({
       text: "Continue"
@@ -77,6 +81,53 @@
 </div>
 
 <script>
+  function validateForm() {
+    var startDay = document.getElementById("start-day").value.trim();
+    var startMonth = document.getElementById("start-month").value.trim();
+    var startYear = document.getElementById("start-year").value.trim();
+
+    var startDayError = startDay === "";
+    var startMonthError = startMonth === "";
+    var startYearError = startYear === "";
+
+    if (startDayError || startMonthError || startYearError) {
+      // Show error states
+      document.getElementById("start-date-error").style.display = "block";
+
+      // Optionally, you can add error classes to input fields if needed
+      document.getElementById("start-day").classList.toggle("govuk-input--error", startDayError);
+      document.getElementById("start-month").classList.toggle("govuk-input--error", startMonthError);
+      document.getElementById("start-year").classList.toggle("govuk-input--error", startYearError);
+
+      return false;
+    }
+
+    // If all fields are filled, allow form submission
+    return true;
+  }
+</script>
+
+<script>
+  document.querySelector('form.form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const startDay = document.getElementById('start-day').value;
+      const startMonth = document.getElementById('start-month').value;
+      const startYear = document.getElementById('start-year').value;
+
+      // Create a Date object from the extracted start date
+      const startDate = new Date(`${startYear}-${startMonth}-${startDay}`);
+
+      // Store start date in session or local storage if needed
+      // For simplicity, let's assume we're storing it in session storage
+      sessionStorage.setItem('startDate', startDate.toISOString());
+
+      // Redirect to the next page
+      window.location.href = '/returner-B';
+  });
+</script>
+
+ <script>
   document.querySelector('form.form').addEventListener('submit', function(event) {
       // Prevent default form submission behavior
       event.preventDefault();
@@ -85,6 +136,13 @@
       const startDay = document.getElementById('start-day').value;
       const startMonth = document.getElementById('start-month').value;
       const startYear = document.getElementById('start-year').value;
+
+      // Check if any of the date input fields are empty
+      if (startDay === "" || startMonth === "" || startYear === "") {
+          // Show error states (if needed)
+          document.getElementById("start-date-error").style.display = "block";
+          return; // Exit the function to prevent further execution
+      }
 
       // Create a Date object from the extracted start date
       const startDate = new Date(`${startYear}-${startMonth}-${startDay}`);
@@ -102,6 +160,7 @@
       }
   });
 </script>
+
 
 
 

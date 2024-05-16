@@ -106,6 +106,41 @@ router.get('/returner-B', (req, res) => {
     res.render('returner-B');
 });
 
+router.post('/submit-returner-B', (req, res) => {
+    const workedInEarlyYears = req.body.worked_in_early_years;
+    
+    // Redirect based on user selection
+    if (workedInEarlyYears === 'yes') {
+      res.redirect('/consent');
+    } else if (workedInEarlyYears === 'no') {
+      res.redirect('/ineligible-returner-B');
+    } else {
+      // Handle the case where no radio button is selected
+      res.send('Please select an option');
+    }
+  });
+
+ // POST route for handling form submission in start-date page
+router.post('/start-date', (req, res) => {
+    // Extract the start date from the form submission
+    const { startDay, startMonth, startYear } = req.body;
+
+    // Redirect to '/check-answers' with start date as query parameter
+    return res.redirect(`/check-answers?startDay=${startDay}&startMonth=${startMonth}&startYear=${startYear}`);
+});
+
+// GET route for rendering check-answers page
+router.get('/check-answers', (req, res) => {
+    // Retrieve start date data from query parameters
+    const { startDay, startMonth, startYear } = req.query;
+
+    // Render check-answers template with start date data
+    res.render('check-answers', {
+        startDay,
+        startMonth,
+        startYear
+    });
+});
 
 
 

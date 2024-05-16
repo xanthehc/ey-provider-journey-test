@@ -25,14 +25,14 @@
 {% endblock %}
 
 {% block content %}
-<form class="form" action="/returner-B" method="post">
+<form class="form" action="/employee-email" method="post">
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
     <h1 class="govuk-label-wrapper">
       <label class="govuk-label govuk-label--l" for="returner-A">
-        I confirm that {{ data['firstName'] }} didn't work in any childcare roles between <span id="twentyFourWeeksBeforeDate"></span> and <span id="startDate"></span>?
+        I confirm that {{ data['firstName'] }} didn't work in any childcare roles between <span id="sixMonthsBeforeDate"></span> and <span id="oneDayBeforeStartDate"></span>?
       </label>
     </h1>
     <div id="returner-A-hint" class="govuk-hint">
@@ -75,22 +75,30 @@
 </div>
 
 <script>
-  // Assuming you have the start date stored in your data object
-  const startDay = {{ data['startDay'] }};
-  const startMonth = {{ data['startMonth'] }};
-  const startYear = {{ data['startYear'] }};
+  // Retrieve start date and 6 months before date from session storage
+  const startDateString = sessionStorage.getItem('startDate');
+  if (startDateString) {
+      const startDate = new Date(startDateString);
 
-  // Calculate 24 weeks before start date
-  const startDate = new Date(startYear, startMonth - 1, startDay);
-  const twentyFourWeeksBeforeDate = new Date(startDate.getTime() - (24 * 7 * 24 * 60 * 60 * 1000));
+      // Calculate 6 months before start date
+      const sixMonthsBeforeDate = new Date(startDate);
+      sixMonthsBeforeDate.setMonth(sixMonthsBeforeDate.getMonth() - 6);
 
-  // Format the dates
-  const options = { day: 'numeric', month: 'long', year: 'numeric' };
-  const formattedStartDate = startDate.toLocaleDateString('en-GB', options);
-  const formattedTwentyFourWeeksBeforeDate = twentyFourWeeksBeforeDate.toLocaleDateString('en-GB', options);
+      // Calculate one day before start date
+      const oneDayBeforeStartDate = new Date(startDate.getTime() - (1 * 24 * 60 * 60 * 1000));
 
-  // Update the HTML with formatted dates
-  document.getElementById('startDate').innerText = formattedStartDate;
-  document.getElementById('twentyFourWeeksBeforeDate').innerText = formattedTwentyFourWeeksBeforeDate;
+      // Format the dates
+      const options = { day: 'numeric', month: 'long', year: 'numeric' };
+      const formattedSixMonthsBeforeDate = sixMonthsBeforeDate.toLocaleDateString('en-GB', options);
+      const formattedOneDayBeforeStartDate = oneDayBeforeStartDate.toLocaleDateString('en-GB', options);
+
+      // Update the HTML with formatted dates
+      document.getElementById('sixMonthsBeforeDate').innerText = formattedSixMonthsBeforeDate;
+      document.getElementById('oneDayBeforeStartDate').innerText = formattedOneDayBeforeStartDate;
+  } else {
+      // Handle case where dates are not available
+      console.error('Dates are not available');
+  }
 </script>
+
 {% endblock %}

@@ -15,10 +15,6 @@
   </p>
 </div>
 
-  {{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.back()"
-}) }}
 {% endblock %}
 
 {% block content %}
@@ -32,12 +28,13 @@
 
       <p>
         To continue with this claim you must be able to confirm that:
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>this role is at least 70% child-facing</li>
+          <li>your employee did not work in any early years roles in the 6 months before starting their current role</li>
+        </ul>
       </p>
-      <p>
-        <li>this role is at least 70% child-facing</li>
-        <li>your employee did not work in any early years roles in the 6 months before starting their current role
-        </li>
-      </p>
+
       <p>
         Read more <a href="/path/of/page">about this topic</a>.
       </p>
