@@ -25,19 +25,23 @@
 {% endblock %}
 
 {% block content %}
-<form class="form" action="/employee-email" method="post">
+<form class="form" action="/employee-email" method="post" onsubmit="return validateForm()">
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
-    <h1 class="govuk-label-wrapper">
-      <label class="govuk-label govuk-label--l" for="returner-A">
-        I confirm that {{ data['firstName'] }} didn't work in any childcare roles between <span id="six-months-before-start-date"></span> and <span id="start-date-header"></span>
-      </label>
-    </h1>
+    <div class="govuk-form-group" id="checkbox-group">
+      <fieldset class="govuk-fieldset" aria-describedby="returner-A-error">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            I confirm that {{ data['firstName'] }} didn't work in any childcare roles between <span id="six-months-before-start-date"></span> and <span id="start-date-header"></span>
+          </h1>
+        </legend>
     <div id="returner-A-hint" class="govuk-hint">
       {{ data['firstName'] }} must not have worked in any childcare role in the 6 months before their current role to be eligible for an incentive payment.
     </div>
+    <p id="returner-A-error" class="govuk-error-message" style="display: none;">
+      <span class="govuk-visually-hidden">Error:</span> You must be able to confirm this information
+    </p>
     <div class="govuk-form-group">
       <fieldset class="govuk-fieldset">
         <div class="govuk-checkboxes__item">
@@ -48,7 +52,7 @@
         </div>
       </fieldset>
     </div>
-
+<br>
     <details class="govuk-details">
       <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text">
@@ -146,8 +150,18 @@ If you think you've made a mistake, you should check the information you've prov
 
 </script>
 
-  
-  
+<script>
+  function validateForm() {
+    var checkBox = document.getElementById("declaration-returner-A");
+    var errorParagraph = document.getElementById("returner-A-error");
+    if (!checkBox.checked) {
+      errorParagraph.style.display = "block";
+      document.getElementById("checkbox-group").classList.add("govuk-form-group--error");
+      return false;
+    }
+    return true;
+  }
+</script>
   
   
   
