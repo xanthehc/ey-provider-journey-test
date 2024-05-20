@@ -27,16 +27,20 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <div id="employee-nino-group" class="govuk-form-group">
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">Employee details</span>
         What is {{ data['firstName'] }}'s National Insurance number?
       </h1>
 
-      <form class="form" action="/check-answers" method="post">
+      <form class="form" action="/check-answers" method="post" onsubmit="return validateForm();">
 
         <p>
           <div class="govuk-form-group">
+            <p id="employee-nino-error" class="govuk-error-message" style="display: none;">
+              <span class="govuk-visually-hidden">Error:</span> Enter a valid National Insurance number
+            </p>
             <input class="govuk-input govuk-input--width-10" id="employee-nino" name="employeeNino" type="text">
           </div>
         </p>
@@ -49,5 +53,17 @@
 
     </div>
   </div>
+
+  <script>
+    function validateForm() {
+      var nurseryName = document.getElementById("employee-nino").value;
+      if (nurseryName.trim() === "") {
+        document.getElementById("employee-nino-group").classList.add("govuk-form-group--error");
+        document.getElementById("employee-nino-error").style.display = "block";
+        return false;
+      }
+      return true;
+    }
+  </script>
 
 {% endblock %}
