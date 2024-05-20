@@ -36,23 +36,6 @@ router.get('/start-date', function(req, res) {
     }
 });
 
-router.post('/start-date', function(req, res) {
-    // Assuming you have session middleware configured as shown before
-    req.session.twentyFourWeeksBefore = req.body.twentyFourWeeksBefore;
-    res.redirect('/returner-A');
-});
-
-router.get('/returner-A', function(req, res) {
-    if (req.session && req.session.twentyFourWeeksBefore) {
-        res.render('returner-A', {
-            'data': { 'twenty-four-weeks-before': req.session.twentyFourWeeksBeforeDate }
-        });
-    } else {
-        console.log('No twentyFourWeeksBefore in session, redirecting to /start-date');
-        res.redirect('/start-date');
-    }
-});
-
 
 
 // Define route for handling the form submission
@@ -114,29 +97,7 @@ router.post('/ineligible-returner-B', function(req, res) {
   router.post('/employee-email', function(req, res) {
     res.redirect('/employee-email');
   });
-  
 
- // POST route for handling form submission in start-date page
-router.post('/start-date', (req, res) => {
-    // Extract the start date from the form submission
-    const { startDay, startMonth, startYear } = req.body;
-
-    // Redirect to '/check-answers' with start date as query parameter
-    return res.redirect(`/check-answers?startDay=${startDay}&startMonth=${startMonth}&startYear=${startYear}`);
-});
-
-// GET route for rendering check-answers page
-router.get('/check-answers', (req, res) => {
-    // Retrieve start date data from query parameters
-    const { startDay, startMonth, startYear } = req.query;
-
-    // Render check-answers template with start date data
-    res.render('check-answers', {
-        startDay,
-        startMonth,
-        startYear
-    });
-});
 
 
 

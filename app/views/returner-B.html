@@ -32,7 +32,7 @@
 
     <h1 class="govuk-label-wrapper">
       <label class="govuk-label govuk-label--l" for="returner-B">
-        Did {{ data['firstName'] }} work in any early years roles between <span id="sixMonthsBeforeDate"></span> and <span id="oneDayBeforeStartDate"></span>?
+        Did {{ data['firstName'] }} work in any early years roles between <span id="sixMonthsBeforeDate"></span> and <span id="oneDayBeforeStartDate"></span>
       </label>
     </h1>
     <div id="returner-B-hint" class="govuk-hint">
@@ -75,23 +75,6 @@
   </div>
 </div>
 
-<script>
-  function validateForm() {
-    // Check if either radio button is selected
-    const yesChecked = document.getElementById('yes').checked;
-    const noChecked = document.getElementById('no').checked;
-
-    // Show error message if neither radio button is selected
-    if (!yesChecked && !noChecked) {
-      document.getElementById('worked_in_early_years-error-group').classList.add('govuk-form-group--error');
-      document.getElementById('worked_in_early_years-error').style.display = 'block';
-      return false; // Prevent form submission
-    }
-
-    // If at least one radio button is selected, proceed with form submission
-    return true;
-  }
-</script>
 
 <script>
   // Retrieve start date and 6 months before date from session storage
