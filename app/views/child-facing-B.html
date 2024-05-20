@@ -25,20 +25,24 @@
 
 {% block content %}
 
-<form class="form" action="/returner-A" method="post">
+<form class="form" action="/returner-A" method="post" onsubmit="return validateForm()">
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-<div class="govuk-form-group">
-  <h1 class="govuk-label-wrapper">
-    <label class="govuk-label govuk-label--l" for="declaration-B">
-      I confirm that {{ data['firstName'] }}’s role is at least 70% child-facing
-    </label>
-  </h1>
+      <div class="govuk-form-group" id="checkbox-group">
+        <fieldset class="govuk-fieldset" aria-describedby="declaration-B-error">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              I confirm that {{ data['firstName'] }}’s role is at least 70% child-facing
+            </h1>
+          </legend>
   <div id="child-facing-B-hint" class="govuk-hint">
     This role must be at least 70% child-facing to be eligible for an incentive payment.
   </div>
+  <p id="declaration-B-error" class="govuk-error-message" style="display: none;">
+    <span class="govuk-visually-hidden">Error:</span> You must be able to confirm that at least 70% of {{ data['firstName'] }}’s time is spent working directly with children.
+  </p>
   <div class="govuk-checkboxes__item">
     <input class="govuk-checkboxes__input" id="declaration-B" name="declarationB" type="checkbox" value="confirmed">
     <label class="govuk-label govuk-checkboxes__label" for="declaration-B">
@@ -81,14 +85,35 @@ If you think you've made a mistake, you should check the information you've prov
 
   <script>
     document.querySelector('form.form').addEventListener('submit', function(event) {
-        // Prevent default form submission behavior
-        event.preventDefault();
+      // Prevent default form submission behavior
+      event.preventDefault();
+  
+      // Check if the checkbox is checked
+      var checkBox = document.getElementById("declaration-B");
+      if (!checkBox.checked) {
 
-        // Randomly choose between /returner-A and /returner-B
-        const nextPage = Math.random() < 0.5 ? '/returner-A' : '/returner-B';
-        // Redirect to the randomly chosen page
-        window.location.href = nextPage;
+        return false; // Prevent redirection
+      }
+  
+      // Randomly choose between /returner-A and /returner-B
+      const nextPage = Math.random() < 0.5 ? '/returner-A' : '/returner-B';
+      // Redirect to the randomly chosen page
+      window.location.href = nextPage;
     });
+  </script>
+  
+
+<script>
+  function validateForm() {
+    var checkBox = document.getElementById("declaration-B");
+    var errorParagraph = document.getElementById("declaration-B-error");
+    if (!checkBox.checked) {
+      errorParagraph.style.display = "block";
+      document.getElementById("checkbox-group").classList.add("govuk-form-group--error");
+      return false;
+    }
+    return true;
+  }
 </script>
 
 
