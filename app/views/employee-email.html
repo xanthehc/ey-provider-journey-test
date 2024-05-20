@@ -27,16 +27,21 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <div id="employee-email-group" class="govuk-form-group">
+        <h1 class="govuk-label-wrapper">
 
       <h1 class="govuk-heading-l">
         <span class="govuk-caption-l">Employee details</span>
         What is {{ data['firstName'] }}'s email address?
       </h1>
 
-      <form class="form" action="/employee-nino" method="post">
+      <form class="form" action="/employee-nino" method="post" onsubmit="return validateForm();">
 
         <p>
           <div class="govuk-form-group">
+            <p id="employee-email-error" class="govuk-error-message" style="display: none;">
+              <span class="govuk-visually-hidden">Error:</span> Enter a valid email
+            </p>
             <input class="govuk-input" id="employee-email" name="employeeEmail" type="text">
           </div>
         </p>
@@ -49,5 +54,17 @@
 
     </div>
   </div>
+
+  <script>
+    function validateForm() {
+      var nurseryName = document.getElementById("employee-email").value;
+      if (nurseryName.trim() === "") {
+        document.getElementById("employee-email-group").classList.add("govuk-form-group--error");
+        document.getElementById("employee-email-error").style.display = "block";
+        return false;
+      }
+      return true;
+    }
+  </script>
 
 {% endblock %}
