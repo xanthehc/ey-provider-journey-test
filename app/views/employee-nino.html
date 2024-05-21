@@ -29,10 +29,15 @@
     <div class="govuk-grid-column-two-thirds">
       <div id="employee-nino-group" class="govuk-form-group">
 
-      <h1 class="govuk-heading-l">
-        <span class="govuk-caption-l">Employee details</span>
+      <h1 class="govuk-label-wrapper">
+      <span class="govuk-caption-l">Employee details</span>
+      <label class="govuk-label govuk-label--l" for="employee-nino">
         What is {{ data['firstName'] }}'s National Insurance number?
-      </h1>
+      </label>
+    </h1>
+    <div id="employee-nino-hint" class="govuk-hint">
+      Hint text
+    </div>
 
       <form class="form" action="/check-answers" method="post" onsubmit="return validateForm();">
 

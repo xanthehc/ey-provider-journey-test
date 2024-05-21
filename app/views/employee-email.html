@@ -29,11 +29,14 @@
     <div class="govuk-grid-column-two-thirds">
       <div id="employee-email-group" class="govuk-form-group">
         <h1 class="govuk-label-wrapper">
-
-      <h1 class="govuk-heading-l">
-        <span class="govuk-caption-l">Employee details</span>
-        What is {{ data['firstName'] }}'s email address?
-      </h1>
+          <span class="govuk-caption-l">Employee details</span>
+              <label class="govuk-label govuk-label--l" for="employee-email">
+                What is {{ data['firstName'] }}'s email address?
+              </label>
+            </h1>
+            <div id="employee-email-hint" class="govuk-hint">
+              Hint text
+            </div>
 
       <form class="form" action="/employee-nino" method="post" onsubmit="return validateForm();">
 
