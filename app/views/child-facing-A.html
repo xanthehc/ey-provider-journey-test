@@ -25,7 +25,7 @@
 
 {% block content %}
 
-<form class="form" action="/returner-A" method="post" onsubmit="return validateForm()">
+<form class="form" action="/returner-B" method="post" onsubmit="return validateForm()">
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -98,25 +98,6 @@
     }
   </script>
   
-
-  <script>
-    document.querySelector('form.form').addEventListener('submit', function(event) {
-      // Prevent default form submission behavior
-      event.preventDefault();
-  
-      // Check if the checkbox is checked
-      var checkBox = document.getElementById("declaration-A");
-      if (!checkBox.checked) {
-
-        return false; // Prevent redirection
-      }
-  
-      // Randomly choose between /returner-A and /returner-B
-      const nextPage = Math.random() < 0.5 ? '/returner-A' : '/returner-B';
-      // Redirect to the randomly chosen page
-      window.location.href = nextPage;
-    });
-  </script>
   
 
 
