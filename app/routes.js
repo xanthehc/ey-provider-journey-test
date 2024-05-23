@@ -83,20 +83,6 @@ router.get('/returner-A', (req, res) => {
     res.render('returner-A');
 });
 
-// Define route for /returner-B
-router.get('/returner-B', (req, res) => {
-    // Render the returner-B page
-    res.render('returner-B');
-});
-
-// Define routes
-router.post('/ineligible-returner-B', function(req, res) {
-    res.redirect('/ineligible-returner-B');
-  });
-  
-  router.post('/employee-email', function(req, res) {
-    res.redirect('/employee-email');
-  });
 
 
 
