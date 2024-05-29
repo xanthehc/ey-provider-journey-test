@@ -1,8 +1,10 @@
-
+// Load environment variables from .env file
+require('dotenv').config();
+console.log("NOTIFYAPIKEY:", process.env.NOTIFYAPIKEY);
+const NotifyClient = require('notifications-node-client').NotifyClient;
 
 const express = require('express');
 const router = express.Router();  // Declare the router variable only once
-
 
 
 // Handle POST request from the claimant-name form
@@ -87,28 +89,7 @@ router.get('/returner-A', (req, res) => {
     res.render('returner-A');
 });
 
-// GOV NOTIFY
-const { sendEmail } = require('./notifyHelper');
-
-// Serve the email form
-router.get('/magic-link-email-collection', (req, res) => {
-  res.render('magic-link-email-collection');
-});
-
-// Handle form submission
-router.post('/magic-link-email-confirmation', async (req, res) => {
-  const email = req.body.providerEmail;
-  try {
-    await sendEmail(email);
-    res.send('Email sent successfully');
-  } catch (error) {
-    res.send('Failed to send email');
-  }
-});
-
-
-
-
+  
 
 
 
