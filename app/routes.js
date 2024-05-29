@@ -1,11 +1,9 @@
 // Load environment variables from .env file
 require('dotenv').config();
-console.log("NOTIFYAPIKEY:", process.env.NOTIFYAPIKEY);
 const NotifyClient = require('notifications-node-client').NotifyClient;
 
-const express = require('express');
-const router = express.Router();  // Declare the router variable only once
-
+const govukPrototypeKit = require('govuk-prototype-kit')
+const router = govukPrototypeKit.requests.setupRouter()
 
 // Handle POST request from the claimant-name form
 router.post('/claimant-name', function(req, res) {
@@ -70,6 +68,16 @@ router.post('/child-facing', (req, res) => {
     // Redirect to the randomly chosen page
     return res.redirect(nextPage);
 });
+
+router.post('/email-address-page', (req, res) => {
+	const notify = new NotifyClient(process.env.NOTIFYAPIKEY);
+	notify.sendEmail(
+		'e571db62-1c28-4d43-990b-ad856dd47bbf',
+		req.body.emailAddress
+	)
+
+	res.redirect('/confirmation-page');
+})
 
 // Define route for child-facing-A
 router.get('/child-facing-A', (req, res) => {
