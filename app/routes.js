@@ -1,29 +1,21 @@
 // Load environment variables from .env file
 require('dotenv').config();
-console.log("NOTIFYAPIKEY:", process.env.NOTIFYAPIKEY);
 const NotifyClient = require('notifications-node-client').NotifyClient;
 
-const express = require('express');
-const router = express.Router();  // Declare the router variable only once
+const govukPrototypeKit = require('govuk-prototype-kit')
+const router = govukPrototypeKit.requests.setupRouter()
 
 
-// Handle POST request from the claimant-name form
-router.post('/claimant-name', function(req, res) {
-    // Assuming you have session middleware configured as shown before
-    req.session.firstName = req.body.firstName;
-    res.redirect('/start-date');
-});
+router.post('/email-address-page', (req, res) => {
+	const notify = new NotifyClient(process.env.NOTIFYAPIKEY);
+	notify.sendEmail(
+		'e571db62-1c28-4d43-990b-ad856dd47bbf',
+		req.body.emailAddress
+	)
 
-router.get('/start-date', function(req, res) {
-    if (req.session && req.session.firstName) {
-        res.render('start-date', {
-            'data': { 'first-name': req.session.firstName }
-        });
-    } else {
-        console.log('No firstName in session, redirecting to /claimant-name');
-        res.redirect('/claimant-name');
-    }
-});
+	res.redirect('/confirmation-page');
+})
+
 
 router.post('/current-school', function(req, res) {
     // Assuming you have session middleware configured as shown before

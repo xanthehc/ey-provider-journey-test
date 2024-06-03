@@ -17,6 +17,7 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
       {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
     </div>
   </div>
+  
 
   {% block beforeContent %}
 <div class="govuk-phase-banner">
@@ -28,6 +29,11 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
       This is not a real service
   </p>
 </div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
 
 {% endblock %}
 
@@ -50,11 +56,7 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
        {
          href: "/manage-prototype/clear-data",
          text: "Clear data"
-       },
-       {
-        href: "/magic-link-email-confirmation",
-        text: "test notify"
-      }
+       }
      ],
      visuallyHiddenTitle: "Footer links"
    }

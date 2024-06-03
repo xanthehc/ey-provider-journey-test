@@ -7,8 +7,13 @@
     <form class="form" id="email-form" method="post"> 
       {{ govukInput({
         label: {
-          text: "Email Address"
+          text: "Email Address",
+          classes: "govuk-label--l",
+          isPageHeading: true
         },
+      hint: {
+        text: "This is hint text"
+      },
         id: "email-address",
         name: "emailAddress",
         type: "email",
@@ -23,6 +28,11 @@
     </form>
   </div>
 </div>
+
+
+<strong class="govuk-tag">
+  <a href="/confirmation-page">Confirmation</a>
+</strong>
 
 {% endblock %}
 
