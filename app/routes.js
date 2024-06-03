@@ -17,43 +17,6 @@ router.post('/email-address-page', (req, res) => {
 })
 
 
-router.post('/current-school', function(req, res) {
-    // Assuming you have session middleware configured as shown before
-    req.session.nurseryName = req.body.nurseryName;
-    res.redirect('/start-date');
-});
-
-router.get('/start-date', function(req, res) {
-    if (req.session && req.session.nurseryName) {
-        res.render('start-date', {
-            'data': { 'nursery-name': req.session.nurseryName }
-        });
-    } else {
-        console.log('No nurseryName in session, redirecting to /current-school');
-        res.redirect('/current-school');
-    }
-});
-
-
-
-// Define route for handling the form submission
-router.post('/start-date', (req, res) => {
-    // Extract the start date from the form submission
-    const { startDay, startMonth, startYear } = req.body;
-
-    // Create a Date object from the extracted start date
-    const startDate = new Date(`${startYear}-${startMonth}-${startDay}`);
-
-    // Check if the start date is after 15 May 2024
-    const eligibilityDate = new Date('2024-05-15');
-    if (startDate > eligibilityDate) {
-        // Redirect to the child-facing route
-        return res.redirect('/child-facing');
-    } else {
-        // Redirect to '/ineligible-start-date'
-        return res.redirect('/ineligible-start-date');
-    }
-});
 
 // Define route for randomly redirecting to child-facing-A or child-facing-B
 router.post('/child-facing', (req, res) => {

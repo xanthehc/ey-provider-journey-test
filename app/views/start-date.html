@@ -140,7 +140,7 @@
   
   
 
- <script>
+<script>
   document.querySelector('form.form').addEventListener('submit', function(event) {
       // Prevent default form submission behavior
       event.preventDefault();
@@ -163,16 +163,15 @@
       // Check if the start date is after 15 May 2024
       const eligibilityDate = new Date('2024-05-15');
       if (startDate > eligibilityDate) {
-          // Randomly choose between /child-facing-A and /child-facing-B
-          const nextPage = Math.random() < 0.5 ? '/child-facing-A' : '/child-facing-B';
-          // Redirect to the randomly chosen page
-          window.location.href = nextPage;
+          // Redirect to '/child-facing-A'
+          window.location.href = '/child-facing-A';
       } else {
           // Redirect to '/ineligible-start-date'
           window.location.href = '/ineligible-start-date';
       }
   });
 </script>
+
 
 
 
