@@ -45,7 +45,22 @@ router.get('/returner-A', (req, res) => {
 });
 
   
+const express = require('express');
+const notifyClient = new NotifyClient('your-notify-api-key');
 
+router.post('/email-address-page', async (req, res) => { // Make this function async
+  const emailAddress = req.body.email;
+  const templateId = 'your-template-id';
+
+  try {
+    const response = await notifyClient.sendEmail(templateId, emailAddress, {}); // Use await inside async function
+    console.log('Email sent successfully:', response);
+    res.redirect('/success-page');
+  } catch (err) {
+    console.error('Error sending email:', err);
+    res.status(500).send('An error occurred while sending the email.');
+  }
+});
 
 
 module.exports = router;  // Export the router at the end of the file
