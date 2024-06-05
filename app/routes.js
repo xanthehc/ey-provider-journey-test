@@ -16,6 +16,16 @@ router.post('/email-address-page', (req, res) => {
 	res.redirect('/confirmation-page');
 })
 
+router.post('/expired-email-address-page', (req, res) => {
+	const notify = new NotifyClient(process.env.NOTIFYAPIKEY);
+	notify.sendEmail(
+		'2452fdf4-d32e-48f9-b60c-06ac52d7f662',
+		req.body.emailAddress
+	)
+
+	res.redirect('/confirmation-page');
+})
+
 
 
 // Define route for randomly redirecting to child-facing-A or child-facing-B
@@ -44,23 +54,6 @@ router.get('/returner-A', (req, res) => {
     res.render('returner-A');
 });
 
-  
-const express = require('express');
-const notifyClient = new NotifyClient('your-notify-api-key');
-
-router.post('/email-address-page', async (req, res) => { // Make this function async
-  const emailAddress = req.body.email;
-  const templateId = 'your-template-id';
-
-  try {
-    const response = await notifyClient.sendEmail(templateId, emailAddress, {}); // Use await inside async function
-    console.log('Email sent successfully:', response);
-    res.redirect('/success-page');
-  } catch (err) {
-    console.error('Error sending email:', err);
-    res.status(500).send('An error occurred while sending the email.');
-  }
-});
 
 
 module.exports = router;  // Export the router at the end of the file

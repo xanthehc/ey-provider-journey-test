@@ -30,11 +30,6 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
   </p>
 </div>
 
-{{ govukBackLink({
-  text: "Back",
-  href: "javascript:window.history.back()"
-}) }}
-
 {% endblock %}
 
 {% block footer %}
@@ -51,19 +46,19 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
         },
        {
       href: "/email-address-page",
-      text: "Happy path"
+      text: "Test 1"
       },
-      {
-        href: "/confirmation-page",
-        text: "Happy path confirmed"
-        },
        {
          href: "/ineligible-email-collection",
-         text: "Unhappy path"
+         text: "Test 2"
        },
        {
-        href: "/expired-link",
-        text: "Link expired"
+        href: "/expired-email-address-page",
+        text: "Test 3"
+      },
+      {
+        href: "/consent",
+        text: "Continue journey"
       },
        {
          href: "/manage-prototype",
