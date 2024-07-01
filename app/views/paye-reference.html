@@ -32,11 +32,11 @@
       <h1 class="govuk-label-wrapper">
       <span class="govuk-caption-l">Employee details</span>
       <label class="govuk-label govuk-label--l" for="employee-nino">
-        What is {{ data['firstName'] }}'s National Insurance number?
+        What is {{ data['nurseryName'] }}'s employer PAYE reference?
       </label>
     </h1>
     <div id="employee-nino-hint" class="govuk-hint">
-      We'll use this to ensure we can pay your employee
+      This is a 3 digit tax office number, a forward slash, and a tax office employer reference, like 123/AB456. It may be called ‘Employer PAYE reference’ or ‘PAYE reference’. It will be on your P60.
     </div>
 
       <form class="form" action="/check-answers" method="post" onsubmit="return validateForm();">
