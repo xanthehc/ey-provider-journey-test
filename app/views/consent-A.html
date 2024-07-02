@@ -34,12 +34,30 @@
           <fieldset class="govuk-fieldset" aria-describedby="consent-error">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-fieldset__heading">
-                I confirm that I have collected written consent from my employee to share their personal information
+                Declaration of Employee Consent
               </h1>
             </legend>
-            <div id="consent-hint" class="govuk-hint">
-             Before continuing, you must confirm that your employee has consented to you sharing their personal information with us
+            <p>
+              By continuing you’re confirming that:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>you have obtained written consent from your employee to share their personal  information (full name, start date, email address, PAYE reference number)</li>
+              <li>you have provided your employee with a privacy notice that explains what information will be collected, why it is being collected, and who it will be shared with</li>
+            </ul>
+            <p>
+              After confirming consent, you may proceed with submitting your claim. If you have any questions or need further guidance, contact our support team at <a href>help@opsteam.com.</a>
+            </p>
+            <p>You are not required to submit the actual consent forms to the DfE, but you must retain them for your records.
+            </p>
+
+            <div class="govuk-warning-text">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text">
+                <span class="govuk-visually-hidden">Warning</span>
+                By ticking this box, you confirm that you have obtained consent from your employee
+              </strong>
             </div>
+
             <p id="consent-error" class="govuk-error-message" style="display: none;">
               <span class="govuk-visually-hidden">Error:</span> You must be able to confirm this information to continue
             </p>
@@ -47,7 +65,7 @@
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="consent" name="consentGiven" type="checkbox" value="confirmed">
                 <label class="govuk-label govuk-checkboxes__label" for="consent">
-                  I confirm
+                  I confirm that I have obtained consent from my employee and have provided them with the relevant privacy notice
                 </label>
               </div>
             </div>

@@ -37,14 +37,26 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-xl">Guidance</span>
-      <h1 class="govuk-heading-xl">
-        Before you start
+      <span class="govuk-caption-l">Guidance</span>
+      <h1 class="govuk-heading-l">
+        Start an early years financial incentive for you employee
       </h1>
 
-      <h2 class="govuk-heading-m">
+      <p class="govuk-body-l">
       Use this service to make an early years financial incentive payment claim for an employee. 
-      </h2>
+      </p>
+
+      <%= render "govuk_publishing_components/components/govspeak", {
+      } do %>
+        <p>An attachment as a block</p>
+      
+      <%= render "govuk_publishing_components/components/attachment",
+          attachment: { url: "https://example.com/file.odt",
+                        title: "Attachment",
+                        file_size: 1024,
+                        content_type: "application/vnd.oasis.opendocument.text" }
+      %>
+      <% end %>
   
       <p>To make a claim for an employee, they must:</p>
 
@@ -145,5 +157,22 @@
 
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const button = document.querySelector('.govuk-button--start');
+
+      button.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+
+        // Randomly choose either /consent-A or /consent-B
+        const pages = ['/consent-A', '/consent-B'];
+        const randomPage = pages[Math.floor(Math.random() * pages.length)];
+
+        // Redirect to the chosen page
+        window.location.href = randomPage;
+      });
+    });
+  </script>
 
 {% endblock %}

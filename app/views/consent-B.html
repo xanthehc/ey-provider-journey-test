@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      PROTOTYPE
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is not a real service
+  </p>
+</div>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" method="post" action="/current-school">
+      <h1 class="govuk-heading-l">
+        Before you start a claim
+      </h1>
+
+      <p>
+        By continuing you’re confirming that:
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>you have obtained written consent from your employee to share their personal  information (full name, start date, email address, PAYE reference number)</li>
+        <li>you have provided your employee with a privacy notice that explains what information will be collected, why it is being collected, and who it will be shared with</li>
+      </ul>
+
+      <p>You are not required to submit the actual consent forms to the DfE, but you must retain them for your records.
+      </p>
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          By continuing you are confirming you have read and understood the above
+        </strong>
+      </div>
+
+
+      {{ govukButton({
+        text: "Accept and continue"
+      }) }}
+
+    </div>
+    </form>
+  </div>
+
+{% endblock %}
