@@ -34,7 +34,7 @@
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Your workplace
+              Employee's workplace
             </dt>
             <dd class="govuk-summary-list__value">
               {{ data['nurseryName'] }}
@@ -64,6 +64,28 @@
                 <a class="govuk-link" href="/start-date">Change<span class="govuk-visually-hidden"> customer reference</span></a>
               </dd>
             </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Confirmation that employee is contracted to spend most of their time working with children
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Confirmed
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/child-facing-A">Change<span class="govuk-visually-hidden"> home address</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Confirmation that employee is eligible to recieve financial incentive based on their previous employment
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Confirmed
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/returner-1">Change<span class="govuk-visually-hidden"> home address</span></a>
+              </dd>
+            </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Employee's email address
@@ -80,10 +102,10 @@
               Employer's PAYE reference number
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['employeeNino'] }}
+              {{ data['employeePaye'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/employee-nino">Change<span class="govuk-visually-hidden"> home address</span></a>
+              <a class="govuk-link" href="/paye-reference">Change<span class="govuk-visually-hidden"> home address</span></a>
             </dd>
           </div>
         </dl>

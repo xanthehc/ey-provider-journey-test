@@ -27,15 +27,15 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <div id="employee-nino-group" class="govuk-form-group">
+      <div id="employee-paye-group" class="govuk-form-group">
 
       <h1 class="govuk-label-wrapper">
       <span class="govuk-caption-l">Employee details</span>
-      <label class="govuk-label govuk-label--l" for="employee-nino">
+      <label class="govuk-label govuk-label--l" for="employee-paye">
         What is {{ data['nurseryName'] }}'s employer PAYE reference?
       </label>
     </h1>
-    <div id="employee-nino-hint" class="govuk-hint">
+    <div id="employee-paye-hint" class="govuk-hint">
       This is a 3 digit tax office number, a forward slash, and a tax office employer reference, like 123/AB456. It may be called ‘Employer PAYE reference’ or ‘PAYE reference’. It will be on your employee's P60.
     </div>
 
@@ -43,10 +43,10 @@
 
         <p>
           <div class="govuk-form-group">
-            <p id="employee-nino-error" class="govuk-error-message" style="display: none;">
+            <p id="employee-paye-error" class="govuk-error-message" style="display: none;">
               <span class="govuk-visually-hidden">Error:</span> Enter a valid PAYE reference
             </p>
-            <input class="govuk-input govuk-input--width-10" id="employee-nino" name="employeeNino" type="text">
+            <input class="govuk-input govuk-input--width-10" id="employee-paye" name="employeePaye" type="text">
           </div>
         </p>
 
@@ -61,10 +61,10 @@
 
   <script>
     function validateForm() {
-      var nurseryName = document.getElementById("employee-nino").value;
+      var nurseryName = document.getElementById("employee-paye").value;
       if (nurseryName.trim() === "") {
-        document.getElementById("employee-nino-group").classList.add("govuk-form-group--error");
-        document.getElementById("employee-nino-error").style.display = "block";
+        document.getElementById("employee-paye-group").classList.add("govuk-form-group--error");
+        document.getElementById("employee-paye-error").style.display = "block";
         return false;
       }
       return true;

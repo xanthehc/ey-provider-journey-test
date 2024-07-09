@@ -25,7 +25,7 @@
 
 {% block content %}
 
-<form class="form" action="/returner-B" method="post" onsubmit="return validateForm()">
+<form class="form" action="/test" method="post" onsubmit="return validateForm()">
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -34,42 +34,53 @@
         <fieldset class="govuk-fieldset" aria-describedby="declaration-B-error">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-              I confirm that {{ data['firstName'] }}’s role is at least 70% child-facing
+              Does {{ data['firstName'] }} spend most of their contracted hours working directly with children?
             </h1>
           </legend>
   <div id="child-facing-B-hint" class="govuk-hint">
-    This role must be at least 70% child-facing to be eligible for an incentive payment
+    {{ data ['firstName'] }}’s job must involve spending most of their contracted hours (approximately 70% or more) working directly with children
   </div>
   <p id="declaration-B-error" class="govuk-error-message" style="display: none;">
-    <span class="govuk-visually-hidden">Error:</span> You must be able to confirm this information to continue
+    <span class="govuk-visually-hidden">Error:</span> You must select an option below to continue
   </p>
-  <div class="govuk-checkboxes__item">
-    <input class="govuk-checkboxes__input" id="declaration-B" name="declarationB" type="checkbox" value="confirmed">
-    <label class="govuk-label govuk-checkboxes__label" for="declaration-B">
-      I confirm
-    </label>
+
+  <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="declaration-B-yes" name="declarationB" type="radio" value="yes">
+      <label class="govuk-label govuk-radios__label" for="declaration-B-yes">
+        Yes
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="declaration-B-no" name="declarationB" type="radio" value="no">
+      <label class="govuk-label govuk-radios__label" for="declaration-B-no">
+        No
+      </label>
+    </div>
   </div>
+  
 </div>
+
 <details class="govuk-details">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">
-      I cannot confirm this information
+      What does working directly with children involve?
     </span>
   </summary>
   <div class="govuk-details__text">
-    <h3>You must be able to confirm this information before you can continue</h3>
-    <p class="govuk-body">To continue with this claim you must be able to confirm that:</p>
+    <p class="govuk-body">Working directly with children can involve any of the following:</p>
 
     <ul class="govuk-list govuk-list--bullet">
-      <li>this role is at least 70% child-facing</li>
-      <li>your employee did not work in any early years roles in the 6 months before starting their current role</li>
+      <li>working in the room (for example this can include playrooms, baserooms or classrooms)</li>
+      <li>guiding children in their learning</li>
+      <li>supporting children with their learning and development</li>
+      <li>interacting with children</li>
+      <li>giving hands-on care, like with health and hygiene</li>
       </ul>
-        <h3>Get help with your claim</h3>
-      <p>
-        Contact us for help at <a class="help@opsteam.gov.uk" href="#">help@opsteam.education.gov.uk</a>.
-      </p>
   </div>
 </details>
+
+  <p><a href="/unhappy-path">I cannot confirm this information</a></p>
 
         {{ govukButton({
           text: "Continue"
@@ -83,18 +94,27 @@
 
   
 
-<script>
-  function validateForm() {
-    var checkBox = document.getElementById("declaration-B");
-    var errorParagraph = document.getElementById("declaration-B-error");
-    if (!checkBox.checked) {
-      errorParagraph.style.display = "block";
-      document.getElementById("checkbox-group").classList.add("govuk-form-group--error");
-      return false;
-    }
-    return true;
-  }
-</script>
+  <script>
+    function validateForm() {
+      var radios = document.getElementsByName('declarationB');
+      var formValid = false;
 
+      for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+          formValid = true;
+          break;
+        }
+      }
+
+      if (!formValid) {
+        document.getElementById('declaration-B-error').style.display = 'block';
+        document.getElementById('checkbox-group').classList.add('govuk-form-group--error');
+        return false;
+      }
+
+      return true;
+    }
+
+  </script>
 
 {% endblock %}

@@ -28,31 +28,69 @@ router.post('/expired-email-address-page', (req, res) => {
 
 
 
-// Define route for randomly redirecting to child-facing-A or child-facing-B
-router.post('/child-facing', (req, res) => {
-    // Randomly choose between /child-facing-A and /child-facing-B
-    const nextPage = Math.random() < 0.5 ? '/child-facing-A' : '/child-facing-B';
-    // Redirect to the randomly chosen page
-    return res.redirect(nextPage);
+router.post('/test', function(request, response) {
+  // Assuming session data is set properly with declaration-B
+  var declarationB = request.session.data['declarationB'];
+
+  if (declarationB === "yes") {
+      response.redirect("/returner-1");
+  } else {
+      response.redirect("/ineligible");
+  }
 });
 
-// Define route for child-facing-A
-router.get('/child-facing-A', (req, res) => {
-    // Render the child-facing-A page
-    res.render('child-facing-A');
+// Route to handle form submission from /child-facing-A
+router.post('/child-facing-A', function(request, response) {
+  // Always redirect to /returner-1
+  response.redirect("/returner-1");
 });
 
-// Define route for child-facing-B
-router.get('/child-facing-B', (req, res) => {
-    // Render the child-facing-B page
-    res.render('child-facing-B');
+// Route to handle form submission from /returner-1
+router.post('/returner-1', function(request, response) {
+  // Get the value of the radio buttons
+  var returnerOne = request.body.returnerOne;
+
+  // Redirect based on the radio button value
+  if (returnerOne === "yes") {
+      response.redirect("/employee-email");
+  } else if (returnerOne === "I don't know") {
+      response.redirect("/unsure");
+  } else {
+      response.redirect("/returner-2");
+  }
 });
 
-// Define route for /returner-A
-router.get('/returner-A', (req, res) => {
-    // Render the returner-A page
-    res.render('returner-A');
+
+router.post('/returner-2', function(request, response) {
+  // Assuming session data is set properly with returnerOne
+  var returnerTwo = request.session.data['returnerTwo'];
+
+  if (returnerTwo === "permanent") {
+      response.redirect("/returner-3");
+  } 
+  else if (returnerTwo === "I don't know") {
+    response.redirect("/unsure");
+  }
+  else {
+      response.redirect("/employee-email");
+  }
 });
+
+router.post('/returner-3', function(request, response) {
+  // Assuming session data is set properly with returnerOne
+  var returnerThree = request.session.data['returnerThree'];
+
+  if (returnerThree === "yes") {
+      response.redirect("/ineligible");
+  } 
+  else if (returnerThree === "I don't know") {
+    response.redirect("/unsure");
+  }
+  else {
+      response.redirect("/employee-email");
+  }
+});
+
 
 
 

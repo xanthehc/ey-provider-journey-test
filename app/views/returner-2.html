@@ -1,0 +1,119 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      PROTOTYPE
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is not a real service
+  </p>
+</div>
+
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<form class="form" method="post" onsubmit="return validateForm()">
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-form-group" id="checkbox-group">
+        <fieldset class="govuk-fieldset" aria-describedby="returner-two-error">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Select the contract type for {{ data['firstName'] }}'s previous job in an early years setting
+            </h1>
+          </legend>
+  <div id="child-facing-B-hint" class="govuk-hint">
+    Hint placeholder
+  </div>
+  <p id="returner-two-error" class="govuk-error-message" style="display: none;">
+    <span class="govuk-visually-hidden">Error:</span> You must select an option below to continue
+  </p>
+
+  <div class="govuk-radios" data-module="govuk-radios">
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="returner-two-permanent" name="returnerTwo" type="radio" value="permanent">
+      <label class="govuk-label govuk-radios__label" for="returner-two-permanent">
+        permanent
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="returner-two-casual-or-temporary" name="returnerTwo" type="radio" value="casual or temporary">
+      <label class="govuk-label govuk-radios__label" for="returner-two-casual-or-temporary">
+        casual or temporary
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="returner-two-voluntary-or-unpaid" name="returnerTwo" type="radio" value="voluntary or unpaid">
+      <label class="govuk-label govuk-radios__label" for="returner-two-voluntary-or-unpaid">
+        voluntary or unpaid
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="returner-two-other" name="returnerTwo" type="radio" value="other">
+      <label class="govuk-label govuk-radios__label" for="returner-two-other">
+        other
+      </label>
+    </div>
+    <div class="govuk-radios__divider">or</div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="returner-two-unsure" name="returnerTwo" type="radio" value="I don't know">
+        <label class="govuk-label govuk-radios__label" for="returner-two-unsure">
+          I don't know
+        </label>
+      </div>
+  </div>
+  
+</div>
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+      </form>
+
+    </div>
+  </div>
+
+  
+
+  <script>
+    function validateForm() {
+      var radios = document.getElementsByName('returnerTwo');
+      var formValid = false;
+
+      for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+          formValid = true;
+          break;
+        }
+      }
+
+      if (!formValid) {
+        document.getElementById('returner-two-error').style.display = 'block';
+        document.getElementById('checkbox-group').classList.add('govuk-form-group--error');
+        return false;
+      }
+
+      return true;
+    }
+
+  </script>
+
+{% endblock %}

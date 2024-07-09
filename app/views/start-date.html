@@ -164,7 +164,12 @@
       const eligibilityDate = new Date('2024-05-15');
       if (startDate > eligibilityDate) {
           // Redirect to '/child-facing-A'
-          window.location.href = '/employee-email';
+           // Randomly choose either /consent-A or /consent-B
+      const pages = ['/child-facing-A', '/child-facing-B'];
+      const randomPage = pages[Math.floor(Math.random() * pages.length)];
+
+      // Redirect to the chosen page
+      window.location.href = randomPage;
       } else {
           // Redirect to '/ineligible-start-date'
           window.location.href = '/ineligible-start-date';
