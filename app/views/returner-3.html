@@ -34,11 +34,11 @@
         <fieldset class="govuk-fieldset" aria-describedby="returner-three-error">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-             Did {{ data['firstName'] }}'s previous job in an early years setting involve mostly working directly with children?
+              Select the contract type for {{ data['firstName'] }}'s previous job in an early years setting
             </h1>
           </legend>
   <div id="child-facing-B-hint" class="govuk-hint">
-    {{ data['firstName'] }} must have spent at least 70% or more of their time on average working directly with children
+    Hint placeholder
   </div>
   <p id="returner-three-error" class="govuk-error-message" style="display: none;">
     <span class="govuk-visually-hidden">Error:</span> You must select an option below to continue
@@ -46,15 +46,27 @@
 
   <div class="govuk-radios" data-module="govuk-radios">
     <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="returner-three-yes" name="returnerThree" type="radio" value="yes">
-      <label class="govuk-label govuk-radios__label" for="returner-three-yes">
-        Yes
+      <input class="govuk-radios__input" id="returner-three-permanent" name="returnerThree" type="radio" value="permanent">
+      <label class="govuk-label govuk-radios__label" for="returner-three-permanent">
+        permanent
       </label>
     </div>
     <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="returner-three-no" name="returnerThree" type="radio" value="no">
-      <label class="govuk-label govuk-radios__label" for="returner-three-no">
-        No
+      <input class="govuk-radios__input" id="returner-three-casual-or-temporary" name="returnerThree" type="radio" value="casual or temporary">
+      <label class="govuk-label govuk-radios__label" for="returner-three-casual-or-temporary">
+        casual or temporary
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="returner-three-voluntary-or-unpaid" name="returnerThree" type="radio" value="voluntary or unpaid">
+      <label class="govuk-label govuk-radios__label" for="returner-three-voluntary-or-unpaid">
+        voluntary or unpaid
+      </label>
+    </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="returner-three-other" name="returnerThree" type="radio" value="other">
+      <label class="govuk-label govuk-radios__label" for="returner-three-other">
+        other
       </label>
     </div>
     <div class="govuk-radios__divider">or</div>

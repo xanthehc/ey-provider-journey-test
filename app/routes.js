@@ -65,7 +65,7 @@ router.post('/returner-2', function(request, response) {
   // Assuming session data is set properly with returnerOne
   var returnerTwo = request.session.data['returnerTwo'];
 
-  if (returnerTwo === "permanent") {
+  if (returnerTwo === "yes") {
       response.redirect("/returner-3");
   } 
   else if (returnerTwo === "I don't know") {
@@ -80,7 +80,7 @@ router.post('/returner-3', function(request, response) {
   // Assuming session data is set properly with returnerOne
   var returnerThree = request.session.data['returnerThree'];
 
-  if (returnerThree === "yes") {
+  if (returnerThree === "permanent") {
       response.redirect("/ineligible");
   } 
   else if (returnerThree === "I don't know") {

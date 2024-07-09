@@ -34,11 +34,11 @@
         <fieldset class="govuk-fieldset" aria-describedby="returner-two-error">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-              Select the contract type for {{ data['firstName'] }}'s previous job in an early years setting
+             Did {{ data['firstName'] }}'s previous job in an early years setting involve mostly working directly with children?
             </h1>
           </legend>
-  <div id="child-facing-B-hint" class="govuk-hint">
-    Hint placeholder
+  <div id="returner-2-hint" class="govuk-hint">
+    {{ data['firstName'] }} must have spent at least 70% or more of their time on average working directly with children
   </div>
   <p id="returner-two-error" class="govuk-error-message" style="display: none;">
     <span class="govuk-visually-hidden">Error:</span> You must select an option below to continue
@@ -46,27 +46,15 @@
 
   <div class="govuk-radios" data-module="govuk-radios">
     <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="returner-two-permanent" name="returnerTwo" type="radio" value="permanent">
-      <label class="govuk-label govuk-radios__label" for="returner-two-permanent">
-        permanent
+      <input class="govuk-radios__input" id="returner-two-yes" name="returnerTwo" type="radio" value="yes">
+      <label class="govuk-label govuk-radios__label" for="returner-three-yes">
+        Yes
       </label>
     </div>
     <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="returner-two-casual-or-temporary" name="returnerTwo" type="radio" value="casual or temporary">
-      <label class="govuk-label govuk-radios__label" for="returner-two-casual-or-temporary">
-        casual or temporary
-      </label>
-    </div>
-    <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="returner-two-voluntary-or-unpaid" name="returnerTwo" type="radio" value="voluntary or unpaid">
-      <label class="govuk-label govuk-radios__label" for="returner-two-voluntary-or-unpaid">
-        voluntary or unpaid
-      </label>
-    </div>
-    <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="returner-two-other" name="returnerTwo" type="radio" value="other">
-      <label class="govuk-label govuk-radios__label" for="returner-two-other">
-        other
+      <input class="govuk-radios__input" id="returner-two-no" name="returnerTwo" type="radio" value="no">
+      <label class="govuk-label govuk-radios__label" for="returner-three-no">
+        No
       </label>
     </div>
     <div class="govuk-radios__divider">or</div>
