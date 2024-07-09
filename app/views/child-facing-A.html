@@ -32,7 +32,7 @@
         <fieldset class="govuk-fieldset" aria-describedby="declaration-A-error">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-              Confirm {{ data['firstName'] }} is contracted to spend most of their time working directly with children
+              Confirm {{ data['firstName'] }} spends most of their time in their job working directly with children.
             </h1>
           </legend>
           <div id="declaration-A-hint" class="govuk-hint">
@@ -45,12 +45,30 @@
             <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="declaration-A" name="declarationA" type="checkbox" value="checked">
               <label class="govuk-label govuk-checkboxes__label" for="declaration-A">
-                I confirm that at least 70% of {{ data['firstName'] }}’s time is spent working directly with children.
+                I confirm that at least 70% of {{ data['firstName'] }}’s time at work is spent working directly with children.
               </label>
             </div>
           </div>
         </fieldset>
       </div>
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            What does working directly with children involve?
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body">Working directly with children can involve any of the following:</p>
+      
+          <ul class="govuk-list govuk-list--bullet">
+            <li>working in the room (for example this can include playrooms, baserooms or classrooms)</li>
+            <li>guiding children in their learning</li>
+            <li>supporting children with their learning and development</li>
+            <li>interacting with children</li>
+            <li>giving hands-on care, like with health and hygiene</li>
+            </ul>
+        </div>
+      </details>
       <p><a href="/ineligible">I cannot confirm this information</a></p>
       {{ govukButton({ text: "Continue" }) }}
     </div>
