@@ -80,11 +80,8 @@ router.post('/returner-3', function(request, response) {
   // Assuming session data is set properly with returnerOne
   var returnerThree = request.session.data['returnerThree'];
 
-  if (returnerThree === "permanent") {
+  if (returnerThree === "no") {
       response.redirect("/ineligible");
-  } 
-  else if (returnerThree === "I don't know") {
-    response.redirect("/unsure");
   }
   else {
       response.redirect("/employee-email");
