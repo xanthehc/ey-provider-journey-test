@@ -34,16 +34,13 @@
         <fieldset class="govuk-fieldset" aria-describedby="returner-three-error">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-              Was {{ data['firstName'] }}'s previous job in an early years setting on a casual or temporary contract?
+              Was {{ data['firstName'] }}'s previous job in an early years setting on a type of employment that is eligible?
             </h1>
           </legend>
-  <div id="child-facing-B-hint" class="govuk-hint">
-    A temporary contract refers to...
-  </div>
   <p id="returner-three-error" class="govuk-error-message" style="display: none;">
     <span class="govuk-visually-hidden">Error:</span> You must select an option below to continue
   </p>
-
+  <br>
   <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
     <div class="govuk-radios__item">
       <input class="govuk-radios__input" id="returner-three-yes" name="returnerThree" type="radio" value="yes">
@@ -58,8 +55,33 @@
       </label>
     </div>
   </div>
-  
 </div>
+  <details class="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        What is an eligible type of employment for this incentive?
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      <p class="govuk-body">In the six months before starting their current job, your employee must not have had a permanent job working directly with children in an early years setting.</p>
+      <p>If they did work in early years in the 6 months before starting their current job, you can claim if this was in the following types of employment:</p>
+  
+      <ul class="govuk-list govuk-list--bullet">
+        <li>voluntary or unpaid work</li>
+        <li>casual and temporary</li>
+        </ul>
+        <p>Casual or temporary work could include:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>zero-hour contracts</li>
+          <li>guaranteed minimum hour contracts</li>
+          <li>self-employed or freelance contracts</li>
+          <li>fixed term contracts (FTCs)</li>
+          <li>agency work and apprenticeship jobs</li>
+          </ul>
+          <p>You can find more information about employment contracts on the <a href="">ACAS website.</a></p>
+    </div>
+  </details>
+  
 
 
         {{ govukButton({
