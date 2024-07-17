@@ -31,56 +31,56 @@
     <div class="govuk-grid-column-two-thirds">
 
       <div class="govuk-form-group" id="checkbox-group">
-        <fieldset class="govuk-fieldset" aria-describedby="returner-two-error">
+        <fieldset class="govuk-fieldset" aria-describedby="returner-three-error">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-             Did {{ data['firstName'] }}'s previous job in an early years setting involve mostly working directly with children?
+              Select the contract type for {{ data['firstName'] }}'s previous job in an early years setting
             </h1>
           </legend>
-  <br>
-  <p id="returner-two-error" class="govuk-error-message" style="display: none;">
+  <p id="returner-three-error" class="govuk-error-message" style="display: none;">
     <span class="govuk-visually-hidden">Error:</span> You must select an option below to continue
   </p>
-
-  <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+  <br>
+  <div class="govuk-radios" data-module="govuk-radios">
     <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="returner-two-yes" name="returnerTwo" type="radio" value="yes">
+      <input class="govuk-radios__input" id="returner-three-yes" name="returnerThree" type="radio" value="yes">
       <label class="govuk-label govuk-radios__label" for="returner-three-yes">
-        Yes
+        permanent
       </label>
     </div>
     <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="returner-two-no" name="returnerTwo" type="radio" value="no">
+      <input class="govuk-radios__input" id="returner-three-no" name="returnerThree" type="radio" value="no">
       <label class="govuk-label govuk-radios__label" for="returner-three-no">
-        No
+        casual or temporary
       </label>
     </div>
-  </div>
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="returner-three-no" name="returnerThree" type="radio" value="no">
+      <label class="govuk-label govuk-radios__label" for="returner-three-no">
+        voluntary or unpaid
+      </label>
+    </div>
+    </div>
 </div>
-
-<details class="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      What does 'mostly working directly with children' mean?
-    </span>
-  </summary>
-  <div class="govuk-details__text">
-    <p class="govuk-body">'Mostly working directly with children' means that your employee spends most of the time in their job (70% or more) working directly with the children.</p>
-  </div>
-  <div class="govuk-details__text">
-    <p class="govuk-body">Working directly with children can involve any of the following activities:</p>
-
-    <ul class="govuk-list govuk-list--bullet">
-      <li>working in the room (for example this can include playrooms, baserooms or classrooms)</li>
-      <li>guiding children in their learning</li>
-      <li>supporting children with their learning and development</li>
-      <li>interacting with children</li>
-      <li>giving hands-on care, like with health and hygiene</li>
-      </ul>
-  </div>
-</details>
+  <details class="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        What does casual or temporary work include?
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      <p class="govuk-body">Casual or temporary work could include:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>zero-hour contracts</li>
+          <li>guaranteed minimum hour contracts</li>
+          <li>self-employed or freelance contracts</li>
+          <li>fixed term contracts (FTCs)</li>
+          <li>agency work and apprenticeship jobs</li>
+          </ul>
+          <p>You can find more information about employment contracts on the <a href="">ACAS website.</a></p>
+    </div>
+  </details>
   
-
 
 
         {{ govukButton({
@@ -97,7 +97,7 @@
 
   <script>
     function validateForm() {
-      var radios = document.getElementsByName('returnerTwo');
+      var radios = document.getElementsByName('returnerThree');
       var formValid = false;
 
       for (var i = 0; i < radios.length; i++) {
@@ -108,7 +108,7 @@
       }
 
       if (!formValid) {
-        document.getElementById('returner-two-error').style.display = 'block';
+        document.getElementById('returner-three-error').style.display = 'block';
         document.getElementById('checkbox-group').classList.add('govuk-form-group--error');
         return false;
       }
