@@ -37,26 +37,26 @@
               Select the contract type for {{ data['firstName'] }}'s previous job in an early years setting
             </h1>
           </legend>
-  <p id="returner-three-error" class="govuk-error-message" style="display: none;">
+  <p id="returner-four-error" class="govuk-error-message" style="display: none;">
     <span class="govuk-visually-hidden">Error:</span> You must select an option below to continue
   </p>
   <br>
   <div class="govuk-radios" data-module="govuk-radios">
     <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="returner-three-yes" name="returnerThree" type="radio" value="yes">
-      <label class="govuk-label govuk-radios__label" for="returner-three-yes">
+      <input class="govuk-radios__input" id="returner-four-yes" name="returnerFour" type="radio" value="permanent">
+      <label class="govuk-label govuk-radios__label" for="returner-four-yes">
         permanent
       </label>
     </div>
     <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="returner-three-no" name="returnerThree" type="radio" value="no">
-      <label class="govuk-label govuk-radios__label" for="returner-three-no">
+      <input class="govuk-radios__input" id="returner-four-no" name="returnerFour" type="radio" value="casual or temporary">
+      <label class="govuk-label govuk-radios__label" for="returner-four-no">
         casual or temporary
       </label>
     </div>
     <div class="govuk-radios__item">
-      <input class="govuk-radios__input" id="returner-three-no" name="returnerThree" type="radio" value="no">
-      <label class="govuk-label govuk-radios__label" for="returner-three-no">
+      <input class="govuk-radios__input" id="returner-four-no" name="returnerFour" type="radio" value="voluntary or unpaid">
+      <label class="govuk-label govuk-radios__label" for="returner-four-no">
         voluntary or unpaid
       </label>
     </div>
@@ -97,7 +97,7 @@
 
   <script>
     function validateForm() {
-      var radios = document.getElementsByName('returnerThree');
+      var radios = document.getElementsByName('returnerFour');
       var formValid = false;
 
       for (var i = 0; i < radios.length; i++) {
@@ -108,7 +108,7 @@
       }
 
       if (!formValid) {
-        document.getElementById('returner-three-error').style.display = 'block';
+        document.getElementById('returner-four-error').style.display = 'block';
         document.getElementById('checkbox-group').classList.add('govuk-form-group--error');
         return false;
       }

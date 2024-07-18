@@ -30,7 +30,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-form-group" id="checkbox-group">
-      <fieldset class="govuk-fieldset" aria-describedby="returner-A-error">
+      <fieldset class="govuk-fieldset" aria-describedby="returner-B-error">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-fieldset__heading">
             I confirm that {{ data['firstName'] }} didn't work in any childcare roles between <span id="six-months-before-start-date"></span> and <span id="start-date-header"></span>
@@ -39,14 +39,14 @@
     <div id="returner-A-hint" class="govuk-hint">
       {{ data['firstName'] }} must not have worked in any childcare role in the 6 months before their current role to be eligible for an incentive payment
     </div>
-    <p id="returner-A-error" class="govuk-error-message" style="display: none;">
+    <p id="returner-B-error" class="govuk-error-message" style="display: none;">
       <span class="govuk-visually-hidden">Error:</span> You must be able to confirm this information to continue
     </p>
     <div class="govuk-form-group">
       <fieldset class="govuk-fieldset">
         <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="declaration-returner-A" name="declarationreturnerA" type="checkbox" value="confirmed">
-          <label class="govuk-label govuk-checkboxes__label" for="declaration-returner-A">
+          <input class="govuk-checkboxes__input" id="declaration-returner-B" name="declarationreturnerB" type="checkbox" value="confirmed">
+          <label class="govuk-label govuk-checkboxes__label" for="declaration-returner-B">
             I confirm
           </label>
         </div>
@@ -81,76 +81,10 @@
   </div>
 </div>
 
-  
-  <script>
-    // Function to retrieve and display the start date one day before
-    function displayStartDate() {
-      // Retrieve the start date from sessionStorage
-      var startDateString = sessionStorage.getItem('startDate');
-  
-      // Check if the start date is stored
-      if (startDateString) {
-        // Convert the stored string back to a Date object
-        var startDate = new Date(startDateString);
-  
-        // Subtract one day from the start date
-        var oneDayBeforeStartDate = new Date(startDate);
-        oneDayBeforeStartDate.setDate(startDate.getDate() - 1);
-  
-        // Format the date as "Day Month Year" (e.g., "1 July 2004")
-        var formattedStartDate = oneDayBeforeStartDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-  
-        // Display the formatted start date in the header or any desired location
-        document.getElementById('start-date-header').textContent = formattedStartDate;
-      } else {
-        // Handle case where start date is not stored (optional)
-        console.log('Start date is not available.');
-      }
-    }
-  
-    // Call displayStartDate function when the page is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-      displayStartDate(); // Call the function to display the start date one day before
-    });
-  
-  </script>
-
-<script>
-  // Function to retrieve and display the start date six months before
-  function displayStartDateSixMonthsBefore() {
-    // Retrieve the start date from sessionStorage
-    var startDateString = sessionStorage.getItem('startDate');
-
-    // Check if the start date is stored
-    if (startDateString) {
-      // Convert the stored string back to a Date object
-      var startDate = new Date(startDateString);
-
-      // Subtract six months from the start date
-      var sixMonthsBeforeStartDate = new Date(startDate);
-      sixMonthsBeforeStartDate.setMonth(startDate.getMonth() - 6);
-
-      // Format the date as "Day Month Year" (e.g., "1 July 2004")
-      var formattedStartDate = sixMonthsBeforeStartDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-
-      // Display the formatted start date in the specified location
-      document.getElementById('six-months-before-start-date').textContent = formattedStartDate;
-    } else {
-      // Handle case where start date is not stored (optional)
-      console.log('Start date is not available.');
-    }
-  }
-
-  // Call displayStartDateSixMonthsBefore function when the page is loaded
-  document.addEventListener('DOMContentLoaded', function() {
-    displayStartDateSixMonthsBefore(); // Call the function to display the start date six months before
-  });
-
-</script>
 
 <script>
   function validateForm() {
-    var checkBox = document.getElementById("declaration-returner-A");
+    var checkBox = document.getElementById("declaration-returner-B");
     var errorParagraph = document.getElementById("returner-A-error");
     if (!checkBox.checked) {
       errorParagraph.style.display = "block";

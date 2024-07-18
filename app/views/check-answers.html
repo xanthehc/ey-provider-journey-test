@@ -118,7 +118,17 @@
           </ul>
         </ul>
 
-        <form action="/confirmation" method="post" novalidate>
+        <div id="provider-name-group" class="govuk-form-group">
+          <label class="govuk-label" for="provider-name">
+            Confirm the full name of the person submitting this claim (use your own name)
+          </label>
+          <p id="provider-name-error" class="govuk-error-message" style="display: none;">
+            <span class="govuk-visually-hidden">Error:</span> You cannot submit this application without providing your full name
+          </p>
+          <input class="govuk-input" id="provider-name" name="providerName" type="text" aria-describedby="provider-name-hint provider-name-error">
+        </div>
+
+        <form class="form" action="/confirmation" method="post" onsubmit="return validateForm()">
           <input type="hidden" name="answers-checked" value="true">
           <button type="submit" class="govuk-button" data-module="govuk-button">
             Accept and send
@@ -143,5 +153,17 @@
       document.getElementById('startDate').textContent = formattedStartDate;
     }
   </script>
+
+<script>
+  function validateForm() {
+    var providerName = document.getElementById("provider-name").value;
+    if (providerName.trim() === "") {
+      document.getElementById("provider-name-group").classList.add("govuk-form-group--error");
+      document.getElementById("provider-name-error").style.display = "block";
+      return false;
+    }
+    return true;
+  }
+</script>
 
 {% endblock %}

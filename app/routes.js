@@ -66,15 +66,15 @@ router.post('/returner-2', function(request, response) {
   var returnerTwo = request.session.data['returnerTwo'];
 
   if (returnerTwo === "yes") {
-      response.redirect("/returner-3");
+      // Generate a random number (0 or 1)
+      var randomRoute = Math.random() < 0.5 ? "/returner-3" : "/returner-4";
+      response.redirect(randomRoute);
   } 
-  else if (returnerTwo === "I don't know") {
-    response.redirect("/unsure");
-  }
   else {
       response.redirect("/employee-email");
   }
 });
+
 
 router.post('/returner-3', function(request, response) {
   // Assuming session data is set properly with returnerOne
@@ -88,6 +88,15 @@ router.post('/returner-3', function(request, response) {
   }
 });
 
+router.post('/returner-4', function(request, response) {
+  var returnerFour = request.body.returnerFour;
+
+  if (returnerFour === "permanent") {
+      response.redirect("/ineligible");
+  } else {
+      response.redirect("/employee-email");
+  }
+});
 
 
 
