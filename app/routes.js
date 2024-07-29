@@ -67,7 +67,7 @@ router.post('/returner-2', function(request, response) {
 
   if (returnerTwo === "yes") {
       // Generate a random number (0 or 1)
-      var randomRoute = Math.random() < 0.5 ? "/returner-3" : "/returner-4";
+      var randomRoute = Math.random() < 0.5 ? "/returner-4A" : "/returner-4B";
       response.redirect(randomRoute);
   } 
   else {
@@ -76,7 +76,7 @@ router.post('/returner-2', function(request, response) {
 });
 
 
-router.post('/returner-3', function(request, response) {
+router.post('/returner-4A', function(request, response) {
   // Assuming session data is set properly with returnerOne
   var returnerThree = request.session.data['returnerThree'];
 
@@ -88,7 +88,7 @@ router.post('/returner-3', function(request, response) {
   }
 });
 
-router.post('/returner-4', function(request, response) {
+router.post('/returner-4B', function(request, response) {
   var returnerFour = request.body.returnerFour;
 
   if (returnerFour === "permanent") {
