@@ -51,10 +51,8 @@ router.post('/returner-1', function(request, response) {
   var returnerOne = request.body.returnerOne;
 
   // Redirect based on the radio button value
-  if (returnerOne === "yes") {
+  if (returnerOne === "no") {
       response.redirect("/employee-email");
-  } else if (returnerOne === "I don't know") {
-      response.redirect("/unsure");
   } else {
       response.redirect("/returner-2");
   }
