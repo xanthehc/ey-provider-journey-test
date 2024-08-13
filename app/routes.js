@@ -9,17 +9,7 @@ const router = govukPrototypeKit.requests.setupRouter()
 router.post('/email-address-page', (req, res) => {
 	const notify = new NotifyClient(process.env.NOTIFYAPIKEY);
 	notify.sendEmail(
-		'e571db62-1c28-4d43-990b-ad856dd47bbf',
-		req.body.emailAddress
-	)
-
-	res.redirect('/confirmation-page');
-})
-
-router.post('/expired-email-address-page', (req, res) => {
-	const notify = new NotifyClient(process.env.NOTIFYAPIKEY);
-	notify.sendEmail(
-		'2452fdf4-d32e-48f9-b60c-06ac52d7f662',
+		'f6d30fef-01b2-4839-a32d-3912b6949027',
 		req.body.emailAddress
 	)
 

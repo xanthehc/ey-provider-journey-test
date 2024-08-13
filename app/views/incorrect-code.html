@@ -26,13 +26,24 @@
     <div class="govuk-grid-column-two-thirds">
   
         <h1 class="govuk-heading-l">
-           {{ data['firstName']}} may not be eligible
+          There is a problem
         </h1>
   
-        <p>
-          TBC
-        </p>
-        
+        <p>This reference number isn’t correct. Check your confirmation email. </p>
+
+        <p> Your employer can find this claim reference number in their confirmation email.</p>
+          
+        <p>  Once you’ve checked the reference number, try again.</p>
+          
+        <p> Contact us at <a href=>help@opsteam.com</a> if you need further assistance to sign into the early years financial incentive payments service.</p>
+
+
+{{ govukButton({
+  text: "Try again",
+  href: "/sign-in",
+  isStartButton: false
+}) }}
+
       </div>
     </div>
 
