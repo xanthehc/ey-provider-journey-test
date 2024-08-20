@@ -65,8 +65,7 @@ router.post('/returner-2', function(request, response) {
 
   if (returnerTwo === "yes") {
       // Generate a random number (0 or 1)
-      var randomRoute = Math.random() < 0.5 ? "/returner-4A" : "/returner-4B";
-      response.redirect(randomRoute);
+      response.redirect("/returner-4B");
   } 
   else {
       response.redirect("/employee-email");

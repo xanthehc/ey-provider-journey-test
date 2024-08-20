@@ -163,10 +163,8 @@
       // Check if the start date is after 15 May 2024
       const eligibilityDate = new Date('2024-05-15');
       if (startDate > eligibilityDate) {
-          // Redirect to '/child-facing-A'
-           // Randomly choose either /consent-A or /consent-B
-      const pages = ['/child-facing-A', '/child-facing-B'];
-      const randomPage = pages[Math.floor(Math.random() * pages.length)];
+          // Redirect to '/child-facing-B'
+           window.location.href = '/child-facing-B';
 
       // Redirect to the chosen page
       window.location.href = randomPage;
