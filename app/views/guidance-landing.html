@@ -1,0 +1,241 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Mainstream guide example
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for this page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      },
+      {
+        text: "Section",
+        href: "#"
+      },
+      {
+        text: "Subsection"
+      }
+    ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Early years incentive payment for new and returning practitioners
+      </h1>
+
+      <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
+        <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide" role="navigation">
+          <h2 class="govuk-prototype-kit-common-templates-contents-list__title">
+            Contents
+          </h2>
+          <ol class="govuk-prototype-kit-common-templates-contents-list__list">
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed govuk-prototype-kit-common-templates-contents-list__list-item--active">
+              <a href="#">
+                How it works
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed govuk-prototype-kit-common-templates-contents-list__list-item--active">
+              <a href="#how-money-is-allocated">
+              
+                How money is allocated
+              </a>
+            </li>
+            <li aria-current="true" class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="#nursery-eligibility">
+              Nursery eligibility
+            </li>
+            <li aria-current="true" class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="#practitioner-eligibility">
+              Practitioner eligibility
+            </li>
+            <li aria-current="true" class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="#apprentiships">
+              Apprentiships
+            </li>
+            <li aria-current="true" class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="#how-practitioners-are-paid">
+              How practitioners are paid the incentive
+            </li>
+            <li aria-current="true" class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="#if-the-practitioner-leaves">
+                If the practitioner leaves before they’ve been in the role for 6 months 
+            </li>
+            <li aria-current="true" class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="#returning-practitioners">
+                Practitioners returning to the early years setting 
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="landing-page">
+                Make a claim
+              </a>
+            </li>
+          </ol>
+        </nav>
+      </aside>
+
+    </div>
+
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds govuk-prototype-kit-common-templates-mainstream-guide-body">
+      
+      <h2 class="govuk-heading-m">
+        How it works
+      </h2>
+      
+      <p>This is a new scheme to support nurseries with hiring new and permanent practitioners. The aim is to increase the number of permanent practitioners in the early years sector.</p>
+
+        <p>You can offer a £1000 incentive to new early year practitioners when they start a permanent role at your nursery setting.</p>
+        <p>Your local authority (LA) will have a set number of financial incentives that you and other nurseries in your LA can use to recruit new permanent staff.</p>
+      <p>You can use these incentives when you advertise for permanent early learning roles at your nursery. This includes part and full-time roles.</p>
+      <p>After you’ve recruited a new permanent employee, you need to start a claim on the digital claims service on behalf of your employee. When you’ve completed the claim, the employee will receive an email  inviting them to provide more detail and complete the claim. </p>
+      <p>The employee will receive the financial incentive after they’ve been in their role for 6 months. </p>
+      
+      <h2 id="how-money-is-allocated" class="govuk-heading-m">
+        How money is allocated
+      </h2>
+      
+      <p>Lorem ipsum</p>
+
+      <h2 id="nursery-eligibility" class="govuk-heading-m">
+        Nursery eligibility
+      </h2>
+
+      <p>Lorum ipsum</p>
+
+      <h2 id="practitioner-eligibility" class="govuk-heading-m">
+        Practitioner eligibility
+      </h2>
+
+      <p>Anybody who’s new to working in early years or is returning to the profession can receive the incentive payment as long as:</p>
+      <ul class="govuk-list govuk-list--bullet">
+          <li>they’ve not worked in an permanent role in an early years setting in the last 6 months before starting their new role, where they spent most of their time (70% or more) of their time working directly with children</li>
+          <li>the early years job they’ve applied for is on a permanent contract - this applies to part and full-time roles </li> 
+          <li>they’ll spend most of the time  (70% or more) in their job working directly with children</li>   
+        </ul>
+        <p>There’s no restriction on the type of job the applicant had before applying for an early years role. They do not need to have had any early years training or worked in an early years setting before.</p>
+
+        <p>You cannot offer the incentive to anyone who:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>has worked in a permanent role in an early years setting in the last 6 month</li>
+          <li>will not be spending most of their time (70% or more) in their new job working directly with children</li> 
+           
+        </ul>
+
+        <h3 id="working-mostly-with-children" class="govuk-heading-s">
+          Working directly with children for most of the time
+        </h3>
+
+        <p>Working directly with children can involve any of the following:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>working in the room with children — this can include playrooms, baserooms and classrooms</li>
+          <li>guiding, supporting and interacting with children in their learning and development</li> 
+          <li>giving hands-on care, including health and hygiene</li>   
+        </ul>
+
+        <p>Most of the time (70% or more) applies to all EYFS part and full-time roles, and there are no minimum number of contracted hours.</p>
+
+        <h2 id="apprentiships" class="govuk-heading-m">
+          Apprentiships
+        </h2>
+
+        <p>Incentive payments are not available to apprentices, even if their contract type is permanent for the duration of their apprenticeship.
+          You can make a claim on behalf on the employee after they’ve completed their apprenticeship and they've been given a permanent contract.</p>
+
+        <h2 id="how-practitioners-are-paid" class="govuk-heading-m">
+           How practitioners are paid the incentive
+        </h2>
+
+        <p>As part of the claim process, eligible practitoners will be asked for their bank details. The Department for Education will pay the full incentive amount into their account after they've been in the role for 6 months.</p>
+      
+        <h2 id="if-the-practitioner-leaves" class="govuk-heading-m">
+          If the practitioner leaves before they’ve been in the role for 6 months
+       </h2>
+
+      <p>The practitioner must complete 6 months in their role to receive the payment.</p>
+      <P>You need to tell us by email if the practitioner leaves your setting before they've completed 6 months.</P>
+
+      <h2 id="returning-practitioners" class="govuk-heading-m">
+        Practitioners returning to early years
+     </h2>
+     <p>The incentive can be offered to returning practioners who are applying for a role more than 6 months after they left the profession.</p>
+     <p>It is not available for those practitioners who left less than 6 months before applying for a new role.</p>
+
+
+      <nav class="govuk-prototype-kit-common-templates-pagination" role="navigation" aria-label="Pagination">
+
+      <!-- {{ govukPagination({
+        previous: {
+          labelText: "Page 1 title",
+          href: "#"
+        },
+        next: {
+          labelText: "Page 3 title",
+          href: "#"
+        }
+      }) }} -->
+
+      <p>
+        <a href="#">
+          View a printable version of the whole guide
+        </a>
+      </p>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Related content
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a href="#">
+                Related link
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Related link
+              </a>
+            </li>
+            <li>
+              <a href="#" class="govuk-!-font-weight-bold">
+                More <span class="govuk-visually-hidden">in Subsection</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+    </div>
+
+  </main>
+</div>
+
+
+
+
+
+    </div>
+  </div>
+
+{% endblock %}
