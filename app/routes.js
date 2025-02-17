@@ -64,7 +64,6 @@ router.post('/returner-2', function(request, response) {
   var returnerTwo = request.session.data['returnerTwo'];
 
   if (returnerTwo === "yes") {
-      // Generate a random number (0 or 1)
       response.redirect("/returner-4B");
   } 
   else {
@@ -94,6 +93,19 @@ router.post('/returner-4B', function(request, response) {
       response.redirect("/employee-email");
   }
 });
+
+router.post('/current-school-playback', function (request, response) {
+  var currentSchool = request.body.currentSchool; // Corrected form field name
+
+  if (currentSchool === "true") {  // Correctly checking for the "true" string
+      response.redirect("/paye-reference");
+  } else if (currentSchool === "none-of-the-above") {
+      response.redirect("/ineligible");
+  } else {
+      response.redirect("/current-school-playback"); // Redirect back if nothing is selected
+  }
+});
+
 
 
 
