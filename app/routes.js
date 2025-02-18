@@ -100,7 +100,7 @@ router.post('/current-school-playback', function (request, response) {
   if (currentSchool === "true") {  // Correctly checking for the "true" string
       response.redirect("/paye-reference");
   } else if (currentSchool === "none-of-the-above") {
-      response.redirect("/ineligible");
+      response.redirect("/ineligible-nursery");
   } else {
       response.redirect("/current-school-playback"); // Redirect back if nothing is selected
   }
