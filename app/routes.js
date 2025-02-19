@@ -106,7 +106,18 @@ router.post('/current-school-playback', function (request, response) {
   }
 });
 
+// Check answers page GET request
+router.get('/check-answers', function (req, res) {
+  res.render('check-answers');
+});
 
+router.post('/email-address', function (req, res) {
+  // Store the email address in the session
+  req.session.data['emailAddress'] = req.body.emailAddress;
+
+  // Redirect to the next page
+  res.redirect('/confirmation');
+});
 
 
 module.exports = router;  // Export the router at the end of the file
