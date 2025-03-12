@@ -1,0 +1,88 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+
+{{ govukHeader({
+  homepageUrl: "/index",
+  serviceName: "Claim an early years financial incentive payment",
+  serviceUrl: "/index"
+}) }}
+
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      PROTOTYPE
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is not a real service
+  </p>
+</div>
+
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <!---<span class="govuk-caption-l">Guidance</span>--->
+    <h1 class="govuk-heading-xl">
+      Complete a claim for an early years financial incentive payment
+    </h1>
+	
+	
+
+    <p class="govuk-body-l">
+      Use this service to complete a claim for a £1,000 recruitment bonus
+      </p>
+      
+      
+
+  </div>
+  
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds govuk-prototype-kit-common-templates-mainstream-guide-body">
+    
+    <h2 class="govuk-heading-l">
+      What you’ll need to complete a claim
+    </h2>
+
+    <p>Once your employer has started a claim on your behalf, you’ll receive an email inviting you to complete the claim.</p>
+    <p>To do this, we’ll help you create a GOV.UK One Login account if you do not already have one. This is so that we can verify your identity.</p>
+    <p>You’ll need to have a form of photo ID to hand to <a href="https://www.gov.uk/using-your-gov-uk-one-login/proving-your-identity">prove your identity via GOV.UK One Login.</a></p>
+    <p>We’ll also ask you for further information such as your bank details. This is so that we can pay your recruitment bonus to you directly.</p>
+    <div class="govuk-inset-text">Your recruitment bonus will be paid after we’ve confirmed with your employer that you’ve been in the role for 6 months.</div>
+   
+
+      <h2 class="govuk-heading-l">
+        Get help with your claim
+      </h2>
+        <p>You can get help with your claim by contacting <a href="mailto:EY.Financial-Incentives@education.gov.uk">EY.Financial-Incentives@education.gov.uk</a>.</p>
+        <p>Read more about the <a href="https://www.claim-additional-teaching-payment.service.gov.uk/early-years-payment/guidance">early years incentive payment for new and returning practitioners guidance</a>.</p>
+
+
+      {{ govukButton({
+        text: "Start now",
+        href: "https://ey-claimant-journey-prototype-e1c05cce67c7.herokuapp.com/email-address-page",
+        isStartButton: true
+      }) }}
+
+
+    </div>
+  </div>
+
+
+{% endblock %}
