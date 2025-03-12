@@ -160,11 +160,11 @@
       // Create a Date object from the extracted start date
       const startDate = new Date(`${startYear}-${startMonth}-${startDay}`);
 
-      // Check if the start date is after 15 May 2024
-      const eligibilityDate = new Date('2024-05-15');
+      // Check if the start date is after 11 Nov 2024
+      const eligibilityDate = new Date('2024-11-11');
       if (startDate > eligibilityDate) {
           // Redirect to '/child-facing-B'
-           window.location.href = '/child-facing-B';
+           window.location.href = '/current-contract-type';
 
       // Redirect to the chosen page
       window.location.href = randomPage;

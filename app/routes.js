@@ -94,6 +94,16 @@ router.post('/returner-4B', function(request, response) {
   }
 });
 
+router.post('/current-contract-type', function(request, response) {
+  var contractType = request.body.contractType;
+
+  if (contractType === "permanent") {
+      response.redirect("/child-facing-B");
+  } else {
+      response.redirect("/ineligible");
+  }
+});
+
 router.post('/current-school-playback', function (request, response) {
   var currentSchool = request.body.currentSchool; // Corrected form field name
 
