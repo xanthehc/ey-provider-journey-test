@@ -129,5 +129,82 @@ router.post('/email-address', function (req, res) {
   res.redirect('/confirmation');
 });
 
+router.post('/confirmation', function (req, res) {
+  const notify = new NotifyClient(process.env.NOTIFYAPIKEY);
+
+  const emailAddress = req.session.data['emailAddress'];
+  const firstName = req.session.data['firstName'];
+  const lastName = req.session.data['lastName'];
+  const providerName = req.session.data['providerName'];
+
+  if (!providerName) {
+    return res.status(400).send("Provider name is required");
+  }
+
+  // First email (confirmation email)
+  const firstTemplateId = 'f9420949-35cc-4527-8661-6d70bfc17561';
+  const firstPersonalisation = {
+    'practitioner_first_name': firstName,
+    'practitioner_last_name': lastName,
+    'provider_name': providerName,
+    'claim_reference': "HDJ2123F"
+  };
+
+  notify
+    .sendEmail(firstTemplateId, emailAddress, { personalisation: firstPersonalisation })
+    .then(response => {
+      console.log('First email sent successfully:', response);
+
+      // Send the second email after 10 seconds
+      setTimeout(() => {
+        const secondTemplateId = '055ce513-aa67-4e2a-93a1-85e1d9d198e1';
+        const secondPersonalisation = {
+          'practitioner_first_name': firstName,
+          'practitioner_last_name': lastName,
+          'provider_name': providerName,
+          'claim_reference': "HDJ2123F"
+        };
+
+        notify
+          .sendEmail(secondTemplateId, emailAddress, { personalisation: secondPersonalisation })
+          .then(response => {
+            console.log('Second email sent successfully:', response);
+
+            // Send the third email after another 10 seconds
+            setTimeout(() => {
+              const thirdTemplateId = '49330f91-47b2-4fda-8c25-11d40158ea8e';
+              const thirdPersonalisation = {
+                'practitioner_first_name': firstName,
+                'practitioner_last_name': lastName,
+                'provider_name': providerName,
+                'claim_reference': "HDJ2123F"
+              };
+
+              notify
+                .sendEmail(thirdTemplateId, emailAddress, { personalisation: thirdPersonalisation })
+                .then(response => {
+                  console.log('Third email sent successfully:', response);
+                })
+                .catch(error => {
+                  console.error('Error sending third email:', error);
+                });
+            }, 10000); // 10-second delay for third email
+          })
+          .catch(error => {
+            console.error('Error sending second email:', error);
+          });
+      }, 10000); // 10-second delay for second email
+    })
+    .catch(error => {
+      console.error('Error sending first email:', error);
+      return res.status(500).send("Error sending confirmation email");
+    });
+
+  // Redirect the user immediately
+  res.redirect('/confirmation');
+});
+
+
+
 
 module.exports = router;  // Export the router at the end of the file
