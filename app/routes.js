@@ -144,6 +144,7 @@ router.post('/confirmation', function (req, res) {
   // First email (confirmation email)
   const firstTemplateId = 'f9420949-35cc-4527-8661-6d70bfc17561';
   const firstPersonalisation = {
+    "email_address": emailAddress,
     'practitioner_first_name': firstName,
     'practitioner_last_name': lastName,
     'provider_name': providerName,
@@ -159,6 +160,7 @@ router.post('/confirmation', function (req, res) {
       setTimeout(() => {
         const secondTemplateId = '055ce513-aa67-4e2a-93a1-85e1d9d198e1';
         const secondPersonalisation = {
+          "email_address": emailAddress,
           'practitioner_first_name': firstName,
           'practitioner_last_name': lastName,
           'provider_name': providerName,
@@ -174,6 +176,7 @@ router.post('/confirmation', function (req, res) {
             setTimeout(() => {
               const thirdTemplateId = '49330f91-47b2-4fda-8c25-11d40158ea8e';
               const thirdPersonalisation = {
+                "email_address": emailAddress,
                 'practitioner_first_name': firstName,
                 'practitioner_last_name': lastName,
                 'provider_name': providerName,
